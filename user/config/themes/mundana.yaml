@@ -1,0 +1,12 @@
+enabled: true
+production-mode: true
+
+menu_langswitcher: true
+menu_login: false
+blog_route: '/news'
+navbar:
+  custom_bgcolor: rgba(12, 77, 163, .95);
+  height: 80
+custom_css: true
+
+sidebar_showtaxonomy: false

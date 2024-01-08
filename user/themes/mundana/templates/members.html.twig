@@ -1,0 +1,54 @@
+{% extends 'partials/base.html.twig' %}
+
+{% set collection = page.collection() %}
+{# Set sidebar option for page #}
+{% set show_sidebar = false %}
+{% set memberTags = config.site.member_tags %}  {# Fetch the tags from the site.yaml #}
+{% set allMembers = page.collection().order('header.enrollment_year') %}  {# Get all member pages #}
+
+{% block content %}
+
+<div class="row mt-3">
+{% embed 'partials/layout.html.twig' %}
+    {% block item %}
+        {% if page_subtitle %}<p class="{{ classLead }} font-weight-light">{{ subtitle|raw }}</p>{% endif %}
+        
+        {% set isFirstItem = true %}
+
+    {% for tag in memberTags %}  {# Loop through each tag #}
+        {% set membersInTag = allMembers|filter(member => member.header.member_tag == tag) %}  {# Filter members by the current tag #}
+        {% if membersInTag|length > 0 %}
+            <h2 class="font-weight-bold title h2 mb-4 ml-4 spanborder">
+                {{ page.header.member_tag_to_display[tag] }} 
+            </h2>
+            <div class="members-list d-lg-flex flex-wrap justify-content-between">
+                {% for member in membersInTag %}
+                    {% set memberImage = member.media.images[page.header.avatar] %}
+                    {% set memberName = member.header.name|raw %}
+                    {% set memberHomepage = member.header.homepage ?? page %}
+                    {% set loadLazy = not isFirstItem %}
+                    {% include 'partials/members-list-item.html.twig' with { 
+                        'members': page, 
+                        'page': member, 
+                        'show_image': true,
+                        'featuredImage': memberImage, 
+                        'page_title': memberName, 
+                        'title_level': 'h5',
+                        'loadLazy': loadLazy
+                    } %}
+                    {% set isFirstItem = false %}
+                {% endfor %}
+            {% endif %}
+            </div>
+    {% endfor %}
+    {% endblock %}
+
+    {% block sidebar %}
+        {% include 'components/page-toc.html.twig' %}
+    {% endblock %}
+{% endembed %}
+</div>
+{% endblock %}
+
+
+

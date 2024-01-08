@@ -1,0 +1,11 @@
+state: enabled
+email: wangwei.sjtu@sjtu.edu.cn
+fullname: 'Wei Wang'
+title: Administrator
+access:
+  admin:
+    login: true
+    super: true
+  site:
+    login: true
+hashed_password: $2y$10$oRXV8k.fuAjKXnLosMENYuzmYv.nXonk0a0lMwkfeTV0kSZ.RAtyS
