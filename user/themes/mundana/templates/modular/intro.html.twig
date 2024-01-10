@@ -1,0 +1,23 @@
+{# MODULAR PAGE - STICKY POST #}
+
+{% set themeBlog = theme_var('blog_route')|defined('/blog') %}
+{% set blog = page.find(header_var('blog_url')|defined(themeBlog)) %}
+{% set override_style = theme_var('override_page_style')|defined(false) %}
+{% set color_style = override_style ? theme_var('default_page_style')|default('primary') : page.parent.header.style|defined('primary') %}
+{% set page_title = page.title %}
+{% set show_title = page.header.show_title|defined(false) %}
+
+{% set blog_image = page.media.images|first %}
+<div class="jumbotron jumbotron-fluid jumbotron-home pt-0 pb-0 p-sm-5 my-5 mb-2rem bg-lightblue position-relative">
+    <div class="pr-0 h-100 tofront">
+        <div class="row justify-content-between">
+            <div class="col-lg-6 px-0"> <img src="{{ blog_image.url}}"> </div>
+            <div class="col-lg-6 px-lg-4 align-self-center">
+                <h2 class="mb-3">{{page.title|raw}}</h2>
+                <div class="mb-3">
+                    {{ page.content|raw }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -11,7 +11,6 @@ onpage_menu: '0'
 body_classes: homefirstpage
 subtitleLead: '1'
 author: {  }
-style: danger
 cache_enable: false
 ---
 

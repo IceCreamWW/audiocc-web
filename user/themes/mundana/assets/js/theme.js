@@ -54,6 +54,10 @@
         if(Math.abs(lastScrollTop - st) <= delta)
             return;
 
+        if (window.matchMedia('(max-device-width: 991.98px)').matches) {
+            return;
+        }
+
         // If they scrolled down and are past the navbar, add class .nav-up.
         // This is necessary so you never see what is "behind" the navbar.
         if (st > lastScrollTop && st > navbarHeight){
@@ -65,7 +69,7 @@
             // Scroll Up
             if(st + $(window).height() < $(document).height()) {               
                 $('nav').removeClass('nav-up').addClass('nav-down');
-                $('.nav-up, .nav-down').css('top', '0px');             
+                $('.nav-up, .nav-down').css('top', - $('#navbarColor02').outerHeight() +'px');             
             }
         }
 

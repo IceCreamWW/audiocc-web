@@ -29,8 +29,8 @@
 {% set menu_search = theme_var('menu_search')|defined(true) %}
 
 {# Navigation bar #}
-<nav id="MagicMenu" class="topnav navbar navbar-expand-lg navbar-{{navbarStyle}} fixed-top {{ navbarBgcolor }} navbarCustomStyles"  >
-	<div class="{{navbarContainer}}">
+<nav id="MagicMenu" class="topnav navbar navbar-expand-lg navbar-{{navbarStyle}} sticky-top {{ navbarBgcolor }} navbarCustomStyles"  >
+	<div class="{{navbarContainer}} d-block">
 		<a class="navbar-brand" href="{{ base_url == '' ? '/' : base_url }}">
 			{# Show logo if enabled in theme options #}
 			{% if logo_enabled and logo %}
@@ -59,18 +59,18 @@
 		</a>
 
 		{# Toggle navigation #}
-		<button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+		<button class="navbar-toggler collapsed float-right m-1" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
 		
-		<div class="navbar-collapse collapse" id="navbarColor02">
+		<div class="navbar-collapse collapse justify-content-between" id="navbarColor02">
 			{# Navigation menu #}
 			{% block navigation %}
 				{% include 'partials/navigation.html.twig' %}
 			{% endblock %}
 			{# Searchbox (If simplesearch plugin is installed) #}
 			{% if config.plugins.simplesearch.enabled and menu_search %}
-				<ul class="navbar-nav mx-auto d-flex align-items-center">
+				<ul class="navbar-nav d-flex align-items-start">
 					{% set buttonSearchColor = theme.navbar.custom_bgcolor ?: theme.navbar.bgcolor|defined('secondary')  %}
 					{% set iconSearchColor = 'text-' ~ (navbarStyle == 'dark' ? 'light' : 'dark') %}
 					{% include 'partials/simplesearch_searchbox.html.twig' with { buttonSearchColor, iconSearchColor } %}

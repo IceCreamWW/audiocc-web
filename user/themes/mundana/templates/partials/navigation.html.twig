@@ -8,7 +8,7 @@
 {% set c_menu_enabled = theme_var('custom_menu_enabled')|defined(true) %}
 
 {# Navigation menu #}
-<ul class="navbar-nav mx-auto d-flex align-items-center">
+<ul class="navbar-nav d-flex align-items-start justify-content-between col-sm-8">
 {% for page in pages.children.visible %}
 {% set icon_menu = page.header.icon_menu is defined ? '<i class="' ~ page.header.icon_menu ~ '"></i>' : '' %}
     {% set current_page = (page.active or page.activeChild) ? 'active' : '' %}
@@ -27,7 +27,7 @@
             </li>
         {% else %}
         <li class="nav-item {{ current_page }}">
-            <a class="nav-link" href="{{ page.url }}">
+            <a class="nav-link pl-sm-0" href="{{ page.url }}">
                 {{ icon_menu|raw }}
                 {{ page.menu }}
             </a>

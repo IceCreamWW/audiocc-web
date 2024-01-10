@@ -1,8 +1,11 @@
 /* Custom CSS */
 
-.navbar-brand {
+.banner-brand {
     font-size: 1.7em;
     letter-spacing: 0.05em;
+    font-family:"Georgia","Times New Roman",serif;
+	display: inline-flex;
+	align-items: center;
 }
 
 .nav-link {

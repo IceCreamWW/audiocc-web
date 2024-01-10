@@ -2,11 +2,18 @@
 
 {% set show_onpage_menu = header_var('onpage_menu')|defined(false) %}
 
+{% block banner %}
+<div class="banner">
+    <div class="banner-overlay"></div>
+</div>
+{% endblock %}
+
+
 {% block header %}
 {% embed 'partials/navbar.html.twig' %}
     {% block navigation %}
         {% if show_onpage_menu == true %}
-            <ul class="navbar-nav mx-auto d-flex align-items-center">
+            <ul class="navbar-nav d-flex align-items-center justify-content-between">
             {% for module in page.collection() if module.header.visible is not same as(false) %}
                 {% set current_module = (module.active or module.activeChild) ? 'active' : '' %}
                 <li class="nav-item"><a class="nav-link" data-scroll class="{{ current_module }}" href="#{{ module.menu|hyphenize }}">{{ module.menu }}</a></li>
@@ -32,11 +39,6 @@
 {% endblock %}
 {% block content %}
 
-    {% block bannar %}
-    <div class="banner">
-        <div class="banner-overlay"></div>
-    </div>
-    {% endblock %}
 
     {{ page.content|raw }}
     
