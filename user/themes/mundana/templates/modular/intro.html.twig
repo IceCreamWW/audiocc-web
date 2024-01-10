@@ -11,7 +11,21 @@
 <div class="jumbotron jumbotron-fluid jumbotron-home pt-0 pb-0 p-sm-5 my-5 mb-2rem bg-lightblue position-relative">
     <div class="pr-0 h-100 tofront">
         <div class="row justify-content-between">
-            <div class="col-lg-6 px-0"> <img src="{{ blog_image.url}}"> </div>
+            <div id="carouselIntroIndicators" class="carousel slide col-lg-6 px-0" data-ride="carousel">
+              <ol class="carousel-indicators">
+                {% for image in page.media.images %}
+                    <li data-target="#carouselIntroIndicators" data-slide-to="{{ loop.index0 }}" class="{{ loop.first ? 'active' }}"></li>
+                {% endfor %}
+              </ol>
+              <div class="carousel-inner">
+                  {% for image in page.media.images %}
+                  <div class="carousel-item {{ loop.first ? 'active' }}">
+                      <img src="{{ image.url}}">
+                  </div>
+                  {% endfor %}
+              </div>
+            </div>
+
             <div class="col-lg-6 px-lg-4 align-self-center">
                 <h2 class="mb-3">{{page.title|raw}}</h2>
                 <div class="mb-3">

@@ -1,10 +1,10 @@
 ---
 title: 实验室简介
 body_classes: modular
-images: ["team.jpeg"]
 blog_url: /news
 show_title: '0'
 subtitleLead: '1'
+media_order: "team.jpeg,race.jpeg,dinner.jpeg"
 show_image: true
 ---
 

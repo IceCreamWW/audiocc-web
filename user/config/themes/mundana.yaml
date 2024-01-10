@@ -1,5 +1,7 @@
 enabled: true
 production-mode: true
+twig:
+  process_shortcodes: true
 
 menu_langswitcher: true
 menu_login: false
