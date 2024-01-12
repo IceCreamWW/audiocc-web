@@ -3,9 +3,56 @@
 .banner-brand {
     font-size: 1.7em;
     letter-spacing: 0.05em;
-    font-family:"Georgia","Times New Roman",serif;
-	display: inline-flex;
-	align-items: center;
+    font-family: "Georgia", "Times New Roman", serif;
+    display: inline-flex;
+    align-items: center;
+}
+
+.banner-overlay {
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(12, 77, 163, .95);
+}
+
+.banner {
+    width: 100vw;
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+
+#homeIntro {
+    line-height: 1.7;
+}
+
+@media (min-width: 992px) {
+    #homeIntro {
+        border: 5px solid rgba(255, 255, 255, 0.5);
+        border-radius: 10px;
+        opacity: 0.9;
+        color: white;
+    }
+    #homeIntro span {
+        border-bottom: 1px solid rgba(255,255,255,.8);
+    }
+    #homeIntro .spanborder {
+        border-bottom: 1px solid rgba(255,255,255,.4);
+    }
+    #homeIntro h3 {
+        font-size: 1.35em;
+    }
+}
+
+@media (max-width: 991.98px) {
+    #homeIntro {
+        border: None;
+        color: black;
+    }
 }
 
 .nav-link {

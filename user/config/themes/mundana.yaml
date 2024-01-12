@@ -10,6 +10,7 @@ navbar:
   custom_bgcolor: rgba(12, 77, 163, .95);
   height: 80
 custom_css: true
+custom_js: true
 default_page_style: primary
 
 sidebar_showtaxonomy: false

@@ -11,26 +11,13 @@
     {# Google Fonts #}
     {% do assets.addCSS('https://fonts.googleapis.com/css?family=Lora:400,400i,700&display=swap', {rel: 'stylesheet'}) %}
     {# CSS styles to change hover color on links dynamically #}
+
     {% set styles %}
         a.text-dark:hover {
             color: {{ hover_color_mapping[color_style] }} !important;    
         }
-        .banner-overlay {
-            height: 100%;
-            width: 100%;
-            top: 0;
-            left: 0;
-            background-color: rgba(12, 77, 163, .95);
-        }
         .banner {
-            width: 100vw;
-            height: 50vh;
             background-image: url('{{ url('theme://images/banner.jpeg') }}');
-            background-size: cover;
-            background-position: center;
-            position: absolute;
-            top: 0;
-            left: 0;
         }
     {% endset %}
     {% do assets.addInlineCss(styles, 1) %} 
