@@ -1,5 +1,11 @@
 /* Custom CSS */
 
+@media (min-width:991.98px) {
+    #MagicMenu {
+        position: sticky;
+    }
+}
+
 .banner-brand {
     font-size: 1.7em;
     letter-spacing: 0.05em;
@@ -37,12 +43,15 @@
         opacity: 0.9;
         color: white;
     }
+
     #homeIntro span {
-        border-bottom: 1px solid rgba(255,255,255,.8);
+        border-bottom: 1px solid rgba(255, 255, 255, .8);
     }
+
     #homeIntro .spanborder {
-        border-bottom: 1px solid rgba(255,255,255,.4);
+        border-bottom: 1px solid rgba(255, 255, 255, .4);
     }
+
     #homeIntro h3 {
         font-size: 1.35em;
     }

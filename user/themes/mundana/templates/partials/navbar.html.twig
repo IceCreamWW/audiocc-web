@@ -29,7 +29,7 @@
 {% set menu_search = theme_var('menu_search')|defined(true) %}
 
 {# Navigation bar #}
-<nav id="MagicMenu" class="topnav navbar navbar-expand-lg navbar-{{navbarStyle}} sticky-top {{ navbarBgcolor }} navbarCustomStyles"  >
+<nav id="MagicMenu" class="topnav navbar navbar-expand-lg navbar-{{navbarStyle}} fixed-top {{ navbarBgcolor }} navbarCustomStyles"  >
 	<div class="{{navbarContainer}} d-block">
 		<a class="navbar-brand" href="{{ base_url == '' ? '/' : base_url }}">
 			{# Show logo if enabled in theme options #}
