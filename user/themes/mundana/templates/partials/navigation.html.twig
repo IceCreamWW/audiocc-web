@@ -26,8 +26,8 @@
                 </div>
             </li>
         {% else %}
-        <li class="nav-item {{ current_page }}">
-            <a class="nav-link pl-sm-0" href="{{ page.url }}">
+        <li class="nav-item">
+            <a class="nav-link pl-sm-0 {{ current_page }}" href="{{ page.url }}">
                 {{ icon_menu|raw }}
                 {{ page.menu }}
             </a>

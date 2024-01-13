@@ -8,19 +8,22 @@
 {% set show_title = page.header.show_title|defined(false) %}
 
 {% set blog_image = page.media.images|first %}
+
+
+
 <div id="intro" class="mx-auto col-lg-12 p-lg-0 mb-2rem bg-lightblue position-relative">
     <div class="pr-0 h-100 tofront">
         <div class="row justify-content-between">
             <div id="carouselIntroIndicators" class="carousel slide col-lg-6 pr-lg-2 pb-5 pt-4" data-ride="carousel">
-              <ol class="carousel-indicators">
+              <div class="carousel-indicators">
                 {% for image in page.media.images %}
-                    <li data-target="#carouselIntroIndicators" data-slide-to="{{ loop.index0 }}" class="{{ loop.first ? 'active' }}"></li>
+                    <button type="button" data-bs-target="#carouselIntroIndicators" data-bs-slide-to="{{ loop.index0 }}" class="{{ loop.first ? 'active' }}" aria-current="{{ loop.first ? 'true' }}" aria-label="Slide {{ loop.index0 }}"></button>
                 {% endfor %}
-              </ol>
+              </div>
               <div class="carousel-inner">
                   {% for image in page.media.images %}
                   <div class="carousel-item {{ loop.first ? 'active' }}">
-                      <img src="{{ image.url}}">
+                      <img src="{{ image.url}}" class="d-block w-100" alt="{{ image.name }}">
                   </div>
                   {% endfor %}
               </div>

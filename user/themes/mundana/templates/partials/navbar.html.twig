@@ -30,8 +30,8 @@
 
 {# Navigation bar #}
 <nav id="MagicMenu" class="topnav navbar navbar-expand-lg navbar-{{navbarStyle}} fixed-top {{ navbarBgcolor }} navbarCustomStyles"  >
-	<div class="{{navbarContainer}} d-block">
-		<a class="navbar-brand" href="{{ base_url == '' ? '/' : base_url }}">
+	<div class="{{navbarContainer}} px-lg-0 flex-wrap">
+		<a class="navbar-brand col-lg-12" href="{{ base_url == '' ? '/' : base_url }}">
 			{# Show logo if enabled in theme options #}
 			{% if logo_enabled and logo %}
 				{% set logo_file = (logo|first).name %}
@@ -41,7 +41,6 @@
 			{% endif %}
 
 			{% if navbarSiteName or navbarIcon %}
-
 				{# If the navigation bar icon is on and the logo is off, it will be displayed next to the site title #}
 				{% if navbarIcon and logo_enabled == false %}
 					<div>
@@ -51,15 +50,13 @@
 
 				{# Show site name if enabled in theme options #}
 				{% if navbarSiteName %}
-					<div>
-						<strong>{{ 'SITE.TITLE'|t }}</strong>
-					</div>
+                    <a class="text-white fs-4 ps-2 col-lg-12 nav-title" href="#">{{ 'SITE.TITLE'|t }}</a>
 				{% endif %}
 			{% endif %}
 		</a>
 
 		{# Toggle navigation #}
-		<button class="navbar-toggler collapsed float-right m-1" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+		<button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
 		

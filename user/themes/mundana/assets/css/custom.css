@@ -1,17 +1,16 @@
 /* Custom CSS */
 
+@media (min-width: 1400px) {
+    .container, .container-md, .container-sm, .container-lg, .container-xl, .container-xxl {
+        max-width: 1140px;
+    }
+}
+
+
 @media (min-width:991.98px) {
     #MagicMenu {
         position: sticky;
     }
-}
-
-.banner-brand {
-    font-size: 1.7em;
-    letter-spacing: 0.05em;
-    font-family: "Georgia", "Times New Roman", serif;
-    display: inline-flex;
-    align-items: center;
 }
 
 .banner-overlay {
@@ -30,7 +29,6 @@
     top: 0;
     left: 0;
 }
-
 
 #homeIntro {
     line-height: 1.7;
@@ -67,4 +65,8 @@
 .nav-link {
     font-size: 1.3em;
     letter-spacing: 0.05em;
+}
+
+.nav-title {
+    letter-spacing: 0.1rem;
 }
