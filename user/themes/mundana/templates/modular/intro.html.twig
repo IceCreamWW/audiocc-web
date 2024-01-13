@@ -12,9 +12,9 @@
 
 
 <div id="intro" class="mx-auto col-lg-12 p-lg-0 mb-2rem bg-lightblue position-relative">
-    <div class="pr-0 h-100 tofront">
+    <div class="pe-0 h-100 tofront">
         <div class="row justify-content-between">
-            <div id="carouselIntroIndicators" class="carousel slide col-lg-6 pr-lg-2 pb-5 pt-4" data-ride="carousel">
+            <div id="carouselIntroIndicators" class="carousel slide col-lg-6 pe-lg-2 pb-5 pt-4" data-ride="carousel">
               <div class="carousel-indicators">
                 {% for image in page.media.images %}
                     <button type="button" data-bs-target="#carouselIntroIndicators" data-bs-slide-to="{{ loop.index0 }}" class="{{ loop.first ? 'active' }}" aria-current="{{ loop.first ? 'true' }}" aria-label="Slide {{ loop.index0 }}"></button>
@@ -29,7 +29,7 @@
               </div>
             </div>
 
-            <div class="col-lg-6 align-self-center mt-5 mt-lg-0 p-0 pl-lg-4">
+            <div class="col-lg-6 align-self-center mt-5 mt-lg-0 p-0 ps-lg-4">
                 <div id="homeIntro" class="px-lg-4 pt-lg-4 mb-lg-4">
                     <h3 class="font-weight-bold spanborder mb-3">
                         <span>{{ page.title|raw }}</span>

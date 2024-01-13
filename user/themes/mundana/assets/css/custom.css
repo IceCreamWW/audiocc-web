@@ -6,13 +6,6 @@
     }
 }
 
-
-@media (min-width:991.98px) {
-    #MagicMenu {
-        position: sticky;
-    }
-}
-
 .banner-overlay {
     height: 100%;
     width: 100%;

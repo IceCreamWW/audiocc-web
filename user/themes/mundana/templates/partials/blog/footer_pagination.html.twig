@@ -7,7 +7,7 @@
 	<div class="container">
 		<div class="row prevnextlinks small font-weight-bold">
 			{% if not page.isLast %}
-				<div class="col-md-6 rightborder pl-0">
+				<div class="col-md-6 rightborder ps-0">
 					<a class="text-dark" href="{{ page.prevSibling.url }}">
 						<div class="row align-items-center justify-content-start">
 							{% if page.prevSibling ?? null %}
@@ -28,7 +28,7 @@
 				</div>
 			{% endif %}
 			{% if not page.isFirst %}
-				<div class="{% if page.isLast %}col-md-12{% else %} col-md-6{% endif %} text-right pr-0">
+				<div class="{% if page.isLast %}col-md-12{% else %} col-md-6{% endif %} text-right pe-0">
 					<a class="text-dark" href="{{ page.nextSibling.url }}">
 						<div class="row align-items-center justify-content-end">
 							<div class="col-11">

@@ -69,7 +69,7 @@
             // Scroll Up
             if(st + $(window).height() < $(document).height()) {               
                 $('nav').removeClass('nav-up').addClass('nav-down');
-                $('.nav-up, .nav-down').css('top', - $('#navbarColor02').outerHeight() +'px');             
+                $('.nav-up, .nav-down').css('top', - $('#navbarBrand').outerHeight() +'px');             
             }
         }
 

@@ -29,9 +29,9 @@
 {% set menu_search = theme_var('menu_search')|defined(true) %}
 
 {# Navigation bar #}
-<nav id="MagicMenu" class="topnav navbar navbar-expand-lg navbar-{{navbarStyle}} fixed-top {{ navbarBgcolor }} navbarCustomStyles"  >
+<nav id="MagicMenu" class="topnav navbar navbar-expand-lg navbar-{{navbarStyle}} fixed-top sticky-lg-top {{ navbarBgcolor }} navbarCustomStyles"  >
 	<div class="{{navbarContainer}} px-lg-0 flex-wrap">
-		<a class="navbar-brand col-lg-12" href="{{ base_url == '' ? '/' : base_url }}">
+		<a id="navbarBrand" class="navbar-brand col-lg-12" href="{{ base_url == '' ? '/' : base_url }}">
 			{# Show logo if enabled in theme options #}
 			{% if logo_enabled and logo %}
 				{% set logo_file = (logo|first).name %}
@@ -44,23 +44,23 @@
 				{# If the navigation bar icon is on and the logo is off, it will be displayed next to the site title #}
 				{% if navbarIcon and logo_enabled == false %}
 					<div>
-						<i class="{{ navbarIconGroup }} fa-{{ navbarIcon }} {{ navbarIconSize }} pr-1"></i>
+						<i class="{{ navbarIconGroup }} fa-{{ navbarIcon }} {{ navbarIconSize }} pe-1"></i>
 					</div>
 				{% endif %}
 
 				{# Show site name if enabled in theme options #}
 				{% if navbarSiteName %}
-                    <a class="text-white fs-4 ps-2 col-lg-12 nav-title" href="#">{{ 'SITE.TITLE'|t }}</a>
+                    <span class="text-white fs-4 ps-lg-2 nav-title" href="#">{{ 'SITE.TITLE'|t }}</span>
 				{% endif %}
 			{% endif %}
 		</a>
 
 		{# Toggle navigation #}
-		<button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+		<button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu" aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
 		
-		<div class="navbar-collapse collapse justify-content-between" id="navbarColor02">
+		<div class="navbar-collapse collapse justify-content-between" id="navbarMenu">
 			{# Navigation menu #}
 			{% block navigation %}
 				{% include 'partials/navigation.html.twig' %}
