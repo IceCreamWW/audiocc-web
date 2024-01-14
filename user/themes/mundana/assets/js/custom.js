@@ -16,10 +16,11 @@ $(document).ready(function() {
         }
     }
 
-    // Adjust the height initially
-    adjustBannerHeight();
-
-    // Adjust the height on window resize
-    $(window).resize(adjustBannerHeight);
+    if ($('#homeBanner').length) {
+        // Adjust the height initially
+        adjustBannerHeight();
+        // Adjust the height on window resize
+        $(window).resize(adjustBannerHeight);
+    }
 });
 

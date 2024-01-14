@@ -39,6 +39,8 @@
         didScroll = true;
     });
 
+    hasScrolled();
+    $("nav").addClass("fixed-top sticky-lg-top");
     setInterval(function() {
         if (didScroll) {
             hasScrolled();
@@ -70,6 +72,11 @@
             if(st + $(window).height() < $(document).height()) {               
                 $('nav').removeClass('nav-up').addClass('nav-down');
                 $('.nav-up, .nav-down').css('top', - $('#navbarBrand').outerHeight() +'px');             
+                if (st < $('#navbarBrand').outerHeight() + 1) {
+                    $('nav').removeClass('navbarDownCustomStyles');
+                } else {
+                    $('nav').addClass('navbarDownCustomStyles')
+                }
             }
         }
 

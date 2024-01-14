@@ -4,6 +4,10 @@
 		.navbarCustomStyles {
 			{{ navbarCustomBgcolor ? 'background: ' ~ navbarCustomBgcolor ~ ';' : '' }}
 			{{ navbarHeight ? 'min-height: ' ~ navbarHeight ~ 'px;' : '' }}
+            transition: background-color 0.3s ease-in-out, top 0.3s ease-in-out;
+		}
+		.navbarDownCustomStyles {
+			{{ navbarCustomBgcolorDown ? 'background: ' ~ navbarCustomBgcolorDown ~ ';' : '' }}
 		}
 		.w_logo {
 			{{ widthLogo ? 'width: ' ~ widthLogo ~ 'px;' : '' }} 
@@ -29,7 +33,7 @@
 {% set menu_search = theme_var('menu_search')|defined(true) %}
 
 {# Navigation bar #}
-<nav id="MagicMenu" class="topnav navbar navbar-expand-lg navbar-{{navbarStyle}} fixed-top sticky-lg-top {{ navbarBgcolor }} navbarCustomStyles"  >
+<nav id="MagicMenu" class="topnav navbar navbar-expand-lg navbar-{{navbarStyle}} {{ navbarBgcolor }} navbarCustomStyles"  >
 	<div class="{{navbarContainer}} px-lg-0 flex-wrap">
 		<a id="navbarBrand" class="navbar-brand col-lg-12" href="{{ base_url == '' ? '/' : base_url }}">
 			{# Show logo if enabled in theme options #}
@@ -50,7 +54,7 @@
 
 				{# Show site name if enabled in theme options #}
 				{% if navbarSiteName %}
-                    <span class="text-white fs-4 ps-lg-2 nav-title" href="#">{{ 'SITE.TITLE'|t }}</span>
+                    <span class="text-white h2-lg h4 ps-lg-2 nav-title" href="#">{{ 'SITE.TITLE'|t }}</span>
 				{% endif %}
 			{% endif %}
 		</a>

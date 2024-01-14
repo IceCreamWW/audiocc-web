@@ -7,7 +7,8 @@ menu_langswitcher: true
 menu_login: false
 blog_route: '/news'
 navbar:
-  custom_bgcolor: rgba(12, 77, 163, .95);
+  custom_bgcolor: rgba(12, 77, 163, 0.45);
+  custom_bgcolor_down: rgba(12, 77, 163, 0.95);
   height: 80
 custom_css: true
 custom_js: true

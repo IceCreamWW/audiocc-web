@@ -11,7 +11,7 @@
     width: 100%;
     top: 0;
     left: 0;
-    background-color: rgba(12, 77, 163, .95);
+    background-color: rgba(12, 77, 163, .85);
 }
 
 .banner {
@@ -23,14 +23,23 @@
     left: 0;
 }
 
+.nav-link {
+    font-size: 1.3em;
+    letter-spacing: 0.05em;
+}
+
+.nav-title {
+    letter-spacing: 0.1rem;
+}
+
 #homeIntro {
     line-height: 1.7;
 }
 
 @media (min-width: 992px) {
     #homeIntro {
-        border: 5px solid rgba(255, 255, 255, 0.5);
-        border-radius: 10px;
+        border: 3px solid rgba(255, 255, 255, 0.0);
+        border-radius: 5px;
         opacity: 0.9;
         color: white;
     }
@@ -44,7 +53,10 @@
     }
 
     #homeIntro h3 {
-        font-size: 1.35em;
+        font-size: 1.35rem;
+    }
+    .h2-lg {
+        font-size: 2rem;
     }
 }
 
@@ -53,13 +65,4 @@
         border: None;
         color: black;
     }
-}
-
-.nav-link {
-    font-size: 1.3em;
-    letter-spacing: 0.05em;
-}
-
-.nav-title {
-    letter-spacing: 0.1rem;
 }
