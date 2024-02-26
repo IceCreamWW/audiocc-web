@@ -1,5 +1,6 @@
 {% extends 'partials/base.html.twig' %}
 
+
 {% set publications = page.collection() %}
 {% set themeBlog = theme_var('blog_route')|defined('/blog') %}
 {% set blog = page.find(header_var('blog_url')|defined(themeBlog)) %}
@@ -33,41 +34,45 @@
         <h2 class="font-weight-bold title h3 text-uppercase mb-4 spanborder">
         <span>{{titleFiltered}}</span>
         </h2>
-        {# isFirstItem is used to pass loading attribute to blog list #}
-        {# Loading the first item as "eager" in the blog list greatly improves page speed #}
-        {% set isFirstItem = true %}
-        {% for child in collection %}
-            {% set childImage = child.media.images[child.header.featuredImage] ?: child.media.images|filter((v, k) => k != child.header.author.avatarImage)|first %}
-			{% set childTitle = child.title|raw %}
-            {% set child_showImage = child.header.show_image|defined(true) %}
-            {% set datePublished = include('partials/page/date.html.twig', { 'page': child }) %}
-            {% set loadLazy = not isFirstItem %}
-            {% include 'partials/blog-list-item.html.twig' with { 
-                'blog': page, 
-                'page': child, 
-                'show_image': child_showImage, 
-                'featuredImage': childImage, 
-                'page_title': childTitle, 
-                'title_level': 'h3',
-                'loadLazy': loadLazy
-            } %}
-            {% set isFirstItem = false %}
-        {% endfor %}
 
-        {% if show_pagination and config.plugins.pagination.enabled and collection.params.pagination %}
-            <!-- Pagination links -->
-            <div class="mt-5">
-                {% include 'partials/pagination.html.twig' with {base_url: page.url, pagination: collection.params.pagination} %}
+        {% for year in page.children %}
+            <h3>{{ year.folder }}</h3>
+            <div>
+            {% for paper in year.children %}
+                <div class="formatted-citation", data-bibstring="@article{Willighagen_2019_Citation,
+  title = {Citation.js: a format-independent, modular bibliography tool for the browser and command line},
+  author = {Willighagen, Lars G.},
+  year = 2019,
+  month = aug,
+  keywords = {Bibliography, Javascript},
+  volume = 5,
+  pages = {e214},
+  journal = {PeerJ Computer Science},
+  issn = {2376-5992},
+  url = {https://doi.org/10.7717/peerj-cs.214},
+  doi = {10.7717/peerj-cs.214}
+}">{{ paper.header.year }}</div>
+            {% endfor %}
             </div>
-        {% endif %}
+        {% endfor %}
     {% endblock %}
+
 
     {% block sidebar %}
         {% include 'partials/sidebar.html.twig' %}
     {% endblock %}
 {% endembed %}
 </div>
+
 {% endblock %}
+
+{% block bottom %}
+    {% do assets.addJs('theme://assets/js/citation.js', {group: 'bottom'}) %}
+    {% do assets.addJs('theme://assets/js/publications.js', {group: 'bottom'}) %}
+    {{ parent() }}
+{% endblock %}
+
+
 
 
 

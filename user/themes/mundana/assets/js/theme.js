@@ -57,9 +57,9 @@
             return;
 
         if (window.matchMedia('(max-device-width: 991.98px)').matches) {
+            $('nav').addClass('navbarDownCustomStyles');
             return;
-        }
-
+        } 
         // If they scrolled down and are past the navbar, add class .nav-up.
         // This is necessary so you never see what is "behind" the navbar.
         if (st > lastScrollTop && st > navbarHeight){

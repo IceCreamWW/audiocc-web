@@ -16,9 +16,6 @@
         a.text-dark:hover {
             color: {{ hover_color_mapping[color_style] }} !important;    
         }
-        .banner {
-            background-image: url('{{ url('theme://images/banner.jpeg') }}');
-        }
     {% endset %}
     {% do assets.addInlineCss(styles, 1) %} 
 {% endblock %}

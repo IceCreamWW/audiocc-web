@@ -13,18 +13,18 @@
 {% set icon_menu = page.header.icon_menu is defined ? '<i class="' ~ page.header.icon_menu ~ '"></i>' : '' %}
     {% set current_page = (page.active or page.activeChild) ? 'active' : '' %}
         {% if dropdown and page.children.visible.count > 0 %}
-            <li class="nav-item dropdown {{ current_page }}">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <div class="nav-item dropdown {{ current_page }}">
+                <div class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     {{ icon_menu|raw }}
                     {{page.menu}}
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                </div>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                     {% for child in page.children.visible %}
                     {% set current_child = (child.active or child.activeChild) ? 'active' : '' %}
-                    <a class="dropdown-item {{ current_child }}" href="{{ child.url }}">{{ child.menu }}</a>
+                    <li><a class="dropdown-item {{ current_child }}" href="{{ child.url }}">{{ child.menu }}</a></li>
                     {% endfor %}
-                </div>
-            </li>
+                </url>
+            </div>
         {% else %}
         <li class="nav-item">
             <a class="nav-link {{ current_page }}" href="{{ page.url }}">

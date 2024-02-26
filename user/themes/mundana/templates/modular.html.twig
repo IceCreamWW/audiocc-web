@@ -4,6 +4,7 @@
 
 {% block banner %}
 <div class="banner" id="homeBanner">
+    <img src="{{ page.media.images[page.header.banner_image].url }}">
     <div class="banner-overlay"></div>
 </div>
 {% endblock %}
@@ -38,7 +39,6 @@
 {% endembed %}
 {% endblock %}
 {% block content %}
-
 
     {{ page.content|raw }}
     
