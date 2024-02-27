@@ -10,7 +10,7 @@
 <div id="intro" class="mx-auto col-lg-12 p-lg-0 mb-2 mt-lg-0 mt-5 bg-lightblue position-relative">
     <div class="pe-0 h-100 tofront">
         <div class="row justify-content-between">
-            <div id="carouselIntroIndicators" class="carousel slide col-lg-6 pe-lg-2 pb-5 pt-4" data-ride="carousel">
+            <div id="carouselIntroIndicators" class="carousel slide col-lg-6 pe-lg-2 pb-5 pt-4 banner-ref" data-ride="carousel">
               <div class="carousel-indicators">
                 {% for image in page.media.images %}
                     <button type="button" data-bs-target="#carouselIntroIndicators" data-bs-slide-to="{{ loop.index0 }}" class="{{ loop.first ? 'active' }}" aria-current="{{ loop.first ? 'true' }}" aria-label="Slide {{ loop.index0 }}"></button>

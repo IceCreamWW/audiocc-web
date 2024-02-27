@@ -14,6 +14,8 @@
 		}	
 		@media (max-width: 768px) {
 			.navbarCustomStyles {
+            {# hack: navbarCustomeBgColor has opacity, making the menu not clearly visible, use navbarCustomBgcolorDown for small devices  #}
+			{{ navbarCustomBgcolorDown ? 'background: ' ~ navbarCustomBgcolorDown ~ ';' : '' }}
 			{{ navbarHeight ? 'min-height: auto;' : '' }}
 			}
 		}

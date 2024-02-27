@@ -1,5 +1,6 @@
 ---
-title: 论文列表
+title: Publications
 content:
     items: '@self.descendants'
+banner_image: 'siyuanlake.jpeg'
 ---

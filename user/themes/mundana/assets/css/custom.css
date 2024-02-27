@@ -25,6 +25,8 @@
 
 .banner img {
     width: 100%;
+    height: 100%;
+    object-fit: fill;
 }
 
 .nav-link {
@@ -70,4 +72,17 @@
         border: None;
         color: black;
     }
+}
+
+
+#publications .year {
+    border-left: .3rem solid rgba(12, 77, 163, 0.75);
+    padding-left: .5rem;
+    display: inline-block;
+}
+
+#publications .pubitem {
+    margin-bottom: 1rem;
+    font-family: "kelson_sansregular";
+    margin-top: .5rem;
 }

@@ -26,35 +26,43 @@
 {% import 'macros/macros.html.twig' as filters %}
 {% set titleFiltered = filters.generateFilteredTitle(uri) %}
 
+{% block banner %}
+<div class="banner d-none">
+    <img src="{{ page.media.images[page.header.banner_image].url }}">
+    <div class="banner-overlay"></div>
+</div>
+{% endblock %}
+
 {% block content %}
 
 <div class="row mt-3">
 {% embed 'partials/layout.html.twig' with { blog: page } %}
     {% block item %}
-        <h2 class="font-weight-bold title h3 text-uppercase mb-4 spanborder">
-        <span>{{titleFiltered}}</span>
+        <h2 class="font-weight-bold title h3 mb-4 spanborder">
+        <span>{{ page.header.title }}</span>
         </h2>
 
+        <div id="publications">
         {% for year in page.children %}
-            <h3>{{ year.folder }}</h3>
+            <div class="year h3">{{ year.folder }}</div>
             <div>
             {% for paper in year.children %}
-                <div class="formatted-citation", data-bibstring="@article{Willighagen_2019_Citation,
-  title = {Citation.js: a format-independent, modular bibliography tool for the browser and command line},
-  author = {Willighagen, Lars G.},
-  year = 2019,
-  month = aug,
-  keywords = {Bibliography, Javascript},
-  volume = 5,
-  pages = {e214},
-  journal = {PeerJ Computer Science},
-  issn = {2376-5992},
-  url = {https://doi.org/10.7717/peerj-cs.214},
-  doi = {10.7717/peerj-cs.214}
-}">{{ paper.header.year }}</div>
+            <div class="pubitem">
+                <div class="formatted-citation", data-bibstring="@{{ paper.header.entry_type}}{{ '{'~ paper.header.uid}},
+                    title = {{ '{' ~ paper.header.title ~ '}' }},
+                    author = {{ '{' ~ paper.header.author ~ '}' }},
+                    year = {{ '{' ~ paper.header.year ~ '}' }},
+                    {% if paper.header.month %} month = {{ '{' ~ paper.header.month ~ '}' }}, {% endif %}
+                    {% if paper.header.volume %} volume = {{ '{' ~ paper.header.volume ~ '}' }}, {% endif %}
+                    {% if paper.header.pages %} pages = {{ '{' ~ paper.header.pages ~ '}' }}, {% endif %}
+                    {% if paper.header.journal %} journal = {{ '{' ~ paper.header.journal ~ '}' }}, {% endif %}
+                    {% if paper.header.publisher %} publisher = {{ '{' ~ paper.header.publisher ~ '}' }}, {% endif %}
+                }"></div>
+            </div>
             {% endfor %}
             </div>
         {% endfor %}
+        </div>
     {% endblock %}
 
 

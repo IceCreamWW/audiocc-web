@@ -1,14 +1,14 @@
 /* Custom js code for theme */
 
-
 $(document).ready(function() {
     function adjustBannerHeight() {
         // if match media lg
-        if (window.matchMedia('(min-width: 992px)').matches)
-            var ref = $('#intro'); // Replace with your image element's ID
-        else
-            var ref = $('#carouselIntroIndicators'); // Replace with your image element's ID
-        var banner = $('#homeBanner'); // Replace with your background element's ID
+        var ref = $('.banner-ref');
+        if (ref.length === 0) {
+            ref = $('#MagicMenu');
+        }
+
+        var banner = $('.banner');
 
         if (ref.length && banner.length) {
             var refBottom = ref.offset().top + ref.outerHeight();
@@ -16,9 +16,10 @@ $(document).ready(function() {
         }
     }
 
-    if ($('#homeBanner').length) {
+    if ($('.banner').length) {
         // Adjust the height initially
         adjustBannerHeight();
+        $('.banner').removeClass('d-none');
         // Adjust the height on window resize
         $(window).resize(adjustBannerHeight);
     }
