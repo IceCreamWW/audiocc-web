@@ -75,7 +75,7 @@
 }
 
 
-#publications .year {
+#publications .pubyear {
     border-left: .3rem solid rgba(12, 77, 163, 0.75);
     padding-left: .5rem;
     display: inline-block;

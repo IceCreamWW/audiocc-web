@@ -1,2 +1,8 @@
 SITE:
   TITLE: "听觉认知与计算声学实验室"
+PUBLICATIONS:
+  ALL: "全部"
+  PUBLICATION_YEAR: "发表时间"
+  RESEARCH_CATEGORY: "文章类别"
+  JOURNAL: "期刊论文"
+  CONFERENCE: "会议论文"

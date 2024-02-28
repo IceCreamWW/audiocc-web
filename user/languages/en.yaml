@@ -1,2 +1,8 @@
 SITE:
   TITLE: "AudioCC Lab"
+PUBLICATIONS:
+  ALL: "All"
+  PUBLICATION_YEAR: "Year"
+  RESEARCH_CATEGORY: "Research Category"
+  JOURNAL: "Journal Articles"
+  CONFERENCE: "Conference Papers"
