@@ -12,8 +12,8 @@
 {# Set pagination option for page #}
 {% set show_pagination = header_var('show_pagination', [page, blog])|defined(true) %}
 
-{% set categories = uri.query('categories') %}
-{% set year_query= uri.query('years') %}
+{% set categories_query = uri.query('categories') %}
+{% set years_query= uri.query('years') %}
 
 
 {% set year2page = {} %}
@@ -22,15 +22,21 @@
     {% set year2page = { (year): child } + year2page %}
 {% endfor %}
 
-{% if not year_query %}
+{% if not years_query %}
     {% set selected_years = page.children|map(page => page.folder)|sort|reverse|slice(0,1) %}
-{% elseif year_query == "all" %}
+{% elseif years_query == "all" %}
     {% set selected_years = year2page|keys %}
 {% else %}
-    {% set selected_years = year_query|split(',')|sort|reverse %}
+    {% set selected_years = years_query|split(',')|sort|reverse %}
 {% endif %}
 
 {% set entry2category = {'article': 'journal', 'inproceedings': 'conference'} %}
+
+{% if not categories_query %}
+    {% set selected_categories = ['journal', 'conference'] %}
+{% else %}
+    {% set selected_categories = categories_query|split(',') %}
+{% endif %}
 
 
 {# Set page filtered #}
@@ -87,12 +93,12 @@
             <div class="h3">{{ 'PUBLICATIONS.PUBLICATION_YEAR'|t }}</div>
             <div>
                 <ul>
-                    <li>
-                        <a href="{{ page.url }}?years=all">{{ 'PUBLICATIONS.ALL'|t }}</a>
+                    <li class="{{ years_query == 'all' ? 'active' : 'inactive' }}" pub-select-all>
+                        <a href="{{ page.url }}?years=all&categories={{ categories_query }}">{{ 'PUBLICATIONS.ALL'|t }}</a>
                     </li>
                     {% for year in year2page|keys %}
-                        <li>
-                            <a href="{{ page.url }}?years={{ year }}">{{ year }}</a>
+                        <li class="{{ years_query == 'all' or year in selected_years ? 'active' : 'inactive'  }}">
+                            <a href="{{ page.url }}?years={{ year }}&categories={{ categories_query }}">{{ year }}</a>
                         </li>
                     {% endfor %}
                 </ul>
@@ -100,14 +106,14 @@
             <div class="h3">{{ 'PUBLICATIONS.RESEARCH_CATEGORY'|t }}</div>
             <div>
                 <ul>
-                    <li>
-                        <a href="{{ page.url }}">{{ 'PUBLICATIONS.ALL'|t }}</a>
+                    <li class="{{ categories_query ? 'active' : 'inactive' }} pub-select-all">
+                        <a href="{{ page.url}}?year={{ years_query }}">{{ 'PUBLICATIONS.ALL'|t }}</a>
                     </li>
-                    <li>
-                        <a href="{{ page.url }}?categories=journal&years=all">{{ 'PUBLICATIONS.JOURNAL'|t }}</a>
+                    <li class="{{ 'journal' in selected_categories ? 'active' : 'inactive' }}">
+                        <a href="{{ page.url }}?years={{ years_query }}&categories=journal">{{ 'PUBLICATIONS.JOURNAL'|t }}</a>
                     </li>
-                    <li>
-                        <a href="{{ page.url}}?categories=conference&years=all">{{ 'PUBLICATIONS.CONFERENCE'|t }}</a>
+                    <li class="{{ 'conference' in selected_categories ? 'active' : 'inactive' }}">
+                        <a href="{{ page.url}}?years={{ years_query }}&categories=conference">{{ 'PUBLICATIONS.CONFERENCE'|t }}</a>
                     </li>
                 </ul>
         </div>
