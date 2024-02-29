@@ -16,7 +16,6 @@
 {% set year_query= uri.query('years') %}
 
 
-
 {% set year2page = {} %}
 {% for child in page.children %}
     {% set year = child.folder %}
@@ -30,6 +29,8 @@
 {% else %}
     {% set selected_years = year_query|split(',')|sort|reverse %}
 {% endif %}
+
+{% set entry2category = {'article': 'journal', 'inproceedings': 'conference'} %}
 
 
 {# Set page filtered #}
@@ -59,6 +60,7 @@
                 <div class="pubyear h3">{{ year.folder }}</div>
                 <div>
                     {% for paper in year.children|sort('header.journal', 'desc') %}
+                    {% if not categories or entry2category[paper.header.entry_type] in categories  %}
                     <div class="pubitem">
                         <div class="formatted-citation", data-bibstring="@{{ paper.header.entry_type}}{{ '{'~ paper.header.uid}},
                             title = {{ '{' ~ paper.header.title ~ '}' }},
@@ -71,6 +73,7 @@
                             {% if paper.header.publisher %} publisher = {{ '{' ~ paper.header.publisher ~ '}' }}, {% endif %}
                         }"></div>
                     </div>
+                    {% endif %}
                     {% endfor %}
                 </div>
             {% endif %}
@@ -101,10 +104,10 @@
                         <a href="{{ page.url }}">{{ 'PUBLICATIONS.ALL'|t }}</a>
                     </li>
                     <li>
-                        <a href="{{ page.url }}?categories=journal">{{ 'PUBLICATIONS.JOURNAL'|t }}</a>
+                        <a href="{{ page.url }}?categories=journal&years=all">{{ 'PUBLICATIONS.JOURNAL'|t }}</a>
                     </li>
                     <li>
-                        <a href="{{ page.url}}?categories=conference ">{{ 'PUBLICATIONS.CONFERENCE'|t }}</a>
+                        <a href="{{ page.url}}?categories=conference&years=all">{{ 'PUBLICATIONS.CONFERENCE'|t }}</a>
                     </li>
                 </ul>
         </div>
