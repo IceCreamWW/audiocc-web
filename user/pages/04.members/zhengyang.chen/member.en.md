@@ -1,5 +1,10 @@
 ---
-name: Xun Gong
-enrollment_year: 2021 
-member_tag: "phd"
+avatar: avatar.png
+degree: PhD
+email: zhengyang.chen@sjtu.edu.cn
+enrollDate: ''
+fields: SID
+joinDate: '2019-09-06'
+name: Zhengyang Chen
+role: student
 ---

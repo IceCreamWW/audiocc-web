@@ -1,35 +1,19 @@
-<div class="mb-5 d-lg-flex col-sm-4 g-0">
+<div class="mb-3 d-lg-flex g-0 flex-wrap col-12 col-sm-3 px-4 py-3" onclick="window.location='{{ page.url }}';">
+    <div class="profile px-2 py-4 w-100">
 	{# Show featured image if it's defined and show_image is true #}
-	{% if featuredImage and show_image %}
-	<div class="col-12 mt-0 col-sm-7 mt-0 mt-sm-0 text-lg-end">
-		<a href="{{page.url}}" aria-label="{{ page_title|raw }}">
-			{{ featuredImage.loading(loadLazy ? 'lazy' : 'eager')
-			.attribute('decoding','async')
-			.attribute('width', '424')
-            .attribute('height', '318')
-			.derivatives(320,424,320)
-			.sizes('(max-width: 768px) 100vw, 50vw')
-			.html(page_title|raw, page_title|raw,'w-100 h-auto rounded')|raw }}
-		</a>
-	</div>
-	{% endif %}
+        {% if featuredImage and show_image %}
+            <div class="profile-pic m-auto w-75">
+                {{ featuredImage.loading(loadLazy ? 'lazy' : 'eager')
+                .attribute('decoding','async')
+                .html(page_title|raw, page_title|raw)|raw }}
+            </div>
+        {% endif %}
 
-	<div class="col-12 mt-4 mt-sm-0 col-sm-5">
-		{# Page post title #}
-		<{{title_level}} class="font-weight-bold mb-1">
-		<a class="text-dark" href="{{page.url}}">{{ page_title|raw }}</a>
-		</{{title_level}}>
-		{# Show categories #}
-		<small class="d-block text-muted">
-			{{ 'MUNDANA.MISC.IN'|t }} <span class="catlist">
-			{% for category in page.taxonomy.category %}
-				<a class="text-capitalize text-{{ color_style }} smoothscroll" href="{{ members.url }}/category{{ config.system.param_sep }}{{ category }}">{{ category|raw }}</a>{% if not loop.last %}<span class="sep">, </span>{% endif %}
-			{% endfor %}
-			</span>
-		</small>
-		{# Show post date #}
-		<small class="d-block text-muted">
-			{% include 'partials/blog/date.html.twig' %}
-		</small>
-	</div>
+        <div class="pt-4 m-auto profile-text">
+            {# Page post title #}
+            <{{title_level}} class="font-weight-bold text-center h4">
+            <a class="text-dark" href="{{page.url}}">{{ page_title|raw }}</a>
+            </{{title_level}}>
+        </div>
+    </div>
 </div>
