@@ -2,9 +2,9 @@
 avatar: avatar.png
 degree: Master
 email: li_jiahong@sjtu.edu.cn
-enrollDate: ''
+enroll_date: ''
 fields: ASR
-joinDate: '2022-09-01'
+join_date: '2022-09-01'
 name: Jiahong Li
 role: student
 ---

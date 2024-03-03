@@ -1,8 +1,8 @@
 <div class="mb-5 row d-lg-flex justify-content-between">
-	<div class="col-12 order-2 order-md-1 mt-4 mt-sm-0 col-sm-8">
+	<div class="col-12 order-2 order-md-1 mt-4 mt-sm-0 col-sm-7">
 		{# Page post title #}
 		<{{title_level}} class="font-weight-bold mb-1">
-		<a class="text-dark" href="{{page.url}}">{{ page_title|raw }}</a>
+		<a class="text-dark" href="{{ page.header.url }}">{{ page_title|raw }}</a>
 		</{{title_level}}>
 		{# If summary is enabled it will displayed #}
 		{% if page.header.summary.enabled ?? true %}
@@ -23,8 +23,8 @@
 	</div>
 	{# Show featured image if it's defined and show_image is true #}
 	{% if featuredImage and show_image %}
-	<div class="col-12 mt-0 col-sm-4 mt-0 mt-sm-0 text-lg-end">
-		<a href="{{page.url}}" aria-label="{{ page_title|raw }}">
+	<div class="col-12 mt-0 col-sm-5 mt-0 mt-sm-0 text-lg-end d-flex align-items-center">
+		<a href="{{ page.header.url }}" aria-label="{{ page_title|raw }}">
 			{{ featuredImage.loading(loadLazy ? 'lazy' : 'eager')
 			.attribute('decoding','async')
 			.attribute('width', '424')

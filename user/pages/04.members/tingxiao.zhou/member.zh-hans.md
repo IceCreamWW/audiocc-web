@@ -2,9 +2,9 @@
 avatar: avatar.png
 degree: Undergraduate
 email: stupid_computer@sjtu.edu.cn
-enrollDate: ''
+enroll_date: ''
 fields: Audio Generation
-joinDate: 2023-8-10
+join_date: 2023-8-10
 name: 周庭孝
 role: student
 ---

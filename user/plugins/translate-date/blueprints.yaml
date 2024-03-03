@@ -1,0 +1,50 @@
+name: Translate Date
+slug: translate-date
+type: plugin
+version: 0.4.0
+icon: calendar
+author:
+  name: Karmalakas
+description: Define date formats for each language and easily use for dates in your templates
+keywords: grav, plugin, date, translation, languages, multi-language
+homepage: https://github.com/Karmalakas/grav-plugin-translate-date
+bugs: https://github.com/Karmalakas/grav-plugin-translate-date/issues
+docs: https://github.com/Karmalakas/grav-plugin-translate-date/blob/main/README.md
+demo: https://www.karmalakas.lt/grav-plugins-demos/translate-date
+license: MIT
+
+dependencies:
+  - { name: grav, version: '>=1.7.0' }
+
+form:
+  validation: loose
+  fields:
+    enabled:
+      type: toggle
+      label: PLUGIN_ADMIN.PLUGIN_STATUS
+      highlight: 1
+      default: 1
+      options:
+        1: PLUGIN_ADMIN.ENABLED
+        0: PLUGIN_ADMIN.DISABLED
+      validate:
+        type: bool
+
+    processor:
+      type: toggle
+      label: Processor
+      highlight: basic
+      default: basic
+      options:
+        basic: basic
+        intl: intl
+      validate:
+        type: string
+
+    formats:
+      type: array
+      label: Default formats
+      help: Default format for date and time in the according language.
+      placeholder_key: Language
+      placeholder_value: Format
+      required: true

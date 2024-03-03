@@ -2,9 +2,9 @@
 avatar: avatar.png
 degree: PhD
 email: zhengyang.chen@sjtu.edu.cn
-enrollDate: ''
+enroll_date: ''
 fields: SID
-joinDate: '2019-09-06'
+join_date: '2019-09-06'
 name: Zhengyang Chen
 role: student
 ---

@@ -88,28 +88,38 @@
 }
 
 .profile {
-    background: rgba(255, 255, 255, 0.0);
     border-radius: 5px;
     box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.1);
-    border: none;
+    cursor: pointer;
+    transition: box-shadow 0.3s;
+}
+
+.profile:hover {
+    box-shadow: 0 0 8px 8px rgba(0, 0, 0, 0.1);
+}
+
+.profile:hover .profile-pic {
+    box-shadow: 0 0 8px 8px rgba(0, 0, 0, 0.2);
 }
 
 .profile-pic {
-  aspect-ratio: 1;
-  box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.2);
-  border-radius: 50%;
-  flex-shrink: 0;
-  position: relative;
+    aspect-ratio: 1;
+    box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 50%;
+    flex-shrink: 0;
+    position: relative;
+    transition: box-shadow 0.3s;
 }
 
+
 .profile-pic > img {
-  background-color: rgba(255, 255, 255, 0.06);
-  border: 5px solid white;
-  border-radius: 50%;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center top;
+    background-color: rgba(255, 255, 255, 0.06);
+    border: 5px solid white;
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
 }
 
 .profile-text {

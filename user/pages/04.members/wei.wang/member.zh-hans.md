@@ -2,9 +2,9 @@
 avatar: avatar.png
 degree: PhD
 email: wangwei.sjtu@sjtu.edu.cn
-enrollDate: '2021-09-01'
+enroll_date: '2021-09-01'
 fields: ASR
-joinDate: '2018-11-01'
+join_date: '2018-11-01'
 name: 王巍
 role: student
 ---

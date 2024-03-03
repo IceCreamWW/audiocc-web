@@ -2,11 +2,11 @@
 avatar: avatar.png
 degree: PhD
 email: gongxun@sjtu.edu.cn
-enrollDate: '2021-09-10'
+enroll_date: '2021-09-10'
 fields:
 - ASR
 - SE
-joinDate: '2019-07-01'
+join_date: '2019-07-01'
 name: 龚勋
 role: student
 ---

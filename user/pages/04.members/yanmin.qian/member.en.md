@@ -2,9 +2,9 @@
 avatar: avatar.png
 degree: ''
 email: yanminqian@sjtu.edu.cn
-enrollDate: unknown
+enroll_date: unknown
 fields: []
-joinDate: unknown
+join_date: unknown
 name: Yanmin Qian
 role: student
 ---

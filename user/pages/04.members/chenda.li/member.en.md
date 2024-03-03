@@ -2,9 +2,9 @@
 avatar: avatar.png
 degree: PhD
 email: lichenda1996@sjtu.edu.cn
-enrollDate: ''
+enroll_date: ''
 fields: SE
-joinDate: '2018-09-01'
+join_date: '2018-09-01'
 name: Chenda Li
 role: student
 ---
