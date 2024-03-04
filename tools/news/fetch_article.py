@@ -42,14 +42,13 @@ class Article:
     def page(self):
         fields = {
             "title": self.title,
-            "publish_date": self.publish_date,
+            "date": self.publish_date,
             "thumbnail": "thumbnail.jpg",
             "taxonomy": { "category": [self.category] },
             "url": self.url,
         }
         content = "---\n" + yaml.dump(fields, default_flow_style=False, allow_unicode=True) + "---\n" + self.summary
         return content
-
 
 
 def scroll_to_bottom(driver):
@@ -60,6 +59,13 @@ def scroll_to_bottom(driver):
             "return document.documentElement.scrollHeight <= document.documentElement.scrollTop + window.innerHeight;")
         if end_of_scroll:
             break
+
+def generate_folder_name(title, max_length=255):
+    allowed_chars = "-'`~!@#$%^&+="
+    sanitized_title = "".join(c if c.isalnum() or c in allowed_chars else "@" for c in title)
+    folder_name = sanitized_title[: max_length - 1]
+    return folder_name
+
 
 def get_thumbnail_images(imgs):
     def can_image_be_thumbnail(img):
@@ -113,8 +119,7 @@ def get_summary(driver):
         raise Exception("Failed to get summary")
 
 
-def fetch_article(url, article_folder):
-    article_folder.mkdir(exist_ok=True)
+def fetch_article(url, workspace, overwrite=False):
 
     # Setting up Chrome options
     chrome_options = Options()
@@ -129,47 +134,69 @@ def fetch_article(url, article_folder):
     logging.info(f"fetching article from {url}")
     driver.get(url)
 
-    logging.info("scrolling to bottom")
-    scroll_to_bottom(driver)
 
-    # Example: Extract the title of the page
-    title = driver.title
+    title = WebDriverWait(driver, EC_WAIT_TIMEOUT).until(EC.presence_of_element_located((By.ID, "activity-name"))).text
+    article_folder = workspace / generate_folder_name(title)
+    article_folder.mkdir(exist_ok=True)
 
-    if title.startswith("【论文速递】"):
-        category = "research"
+    if not overwrite and (article_folder / "thumbnail.jpg").exists():
+        logging.info(f"Article {title} already exists, skipping...")
+        article = None
     else:
-        category = "general"
+        logging.info("scrolling to bottom")
+        scroll_to_bottom(driver)
 
-    publish_time = WebDriverWait(driver, EC_WAIT_TIMEOUT).until(EC.presence_of_element_located((By.ID, "publish_time"))).text
+        # Example: Extract the title of the page
+        logging.info(f"the article title is: {title}")
 
-    logging.info("getting thumbnail image")
-    imgs = WebDriverWait(driver, EC_WAIT_TIMEOUT).until(EC.presence_of_all_elements_located((By.CSS_SELECTOR, "img")))
+        if title.startswith("【论文速递】"):
+            category = "research"
+        else:
+            category = "general"
 
-    logging.info("summairzing")
-    img_urls = get_thumbnail_images(imgs)
-    assert len(img_urls) > 0, "No valid thumbnail image found"
-    img_url = img_urls[1] if category == "research" and len(img_urls) > 1  else img_urls[0]
-    wget.download(img_url, (article_folder / "thumbnail.jpg").as_posix())
+        publish_time = WebDriverWait(driver, EC_WAIT_TIMEOUT).until(EC.presence_of_element_located((By.ID, "publish_time"))).text
 
-    summary = get_summary(driver)
+        logging.info("getting thumbnail image")
+        imgs = WebDriverWait(driver, EC_WAIT_TIMEOUT).until(EC.presence_of_all_elements_located((By.CSS_SELECTOR, "img")))
+
+        logging.info("summairzing")
+        img_urls = get_thumbnail_images(imgs)
+        assert len(img_urls) > 0, "No valid thumbnail image found"
+        img_url = img_urls[1] if category == "research" and len(img_urls) > 1  else img_urls[0]
+        wget.download(img_url, (article_folder / "thumbnail.jpg").as_posix())
+
+        summary = get_summary(driver)
+
+        article = Article(
+            url=url,
+            title=title,
+            publish_date=datetime.strptime(publish_time, "%Y-%m-%d  %H:%M").strftime("%m/%d/%Y %H:%M"),
+            summary=summary,
+            category=category
+        )
+
+        with open(article_folder / "item.zh-hans.md", "w") as f:
+            f.write(article.page)
+            
+        with open(article_folder / "item.en.md", "w") as f:
+            f.write(article.page)
+
+    next_url = prev_url = None
+    num_page_nav_btns = len(WebDriverWait(driver, EC_WAIT_TIMEOUT).until(EC.presence_of_all_elements_located((By.CLASS_NAME, "album_read_nav_btn"))))
+    for i in range(num_page_nav_btns):
+        btns = WebDriverWait(driver, EC_WAIT_TIMEOUT).until(EC.presence_of_all_elements_located((By.CLASS_NAME, "album_read_nav_btn")))
+        btn_text = btns[i].text
+        btns[i].click()
+        if btn_text == "下一篇":
+            next_url = driver.current_url
+        else:
+            prev_url = driver.current_url
+        driver.back()
     driver.quit()
 
-    article = Article(
-        url=url,
-        title=title,
-        publish_date=datetime.strptime(publish_time, "%Y-%m-%d  %H:%M").strftime("%m/%d/%Y %H:%M"),
-        summary=summary,
-        category=category
-    )
-
-    with open(article_folder / "item.zh-hans.md", "w") as f:
-        f.write(article.page)
-        
-    with open(article_folder / "item.en.md", "w") as f:
-        f.write(article.page)
+    return article, (prev_url, next_url)
 
 if __name__ == '__main__':
-
     format = "%(asctime)s: %(message)s"
     logging.basicConfig(format=format, level=logging.INFO, datefmt="%H:%M:%S")
 

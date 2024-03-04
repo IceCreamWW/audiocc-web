@@ -6,6 +6,11 @@
     }
 }
 
+#sidebar {
+    padding-left: 2.5rem;
+}
+
+
 .banner {
     position: absolute;
     top: 0;
@@ -124,5 +129,12 @@
 
 .profile-text {
     letter-spacing: .05rem;
+}
+
+
+#map-container {
+    height: 50vh;
+    aspect-ratio: 16/9;
+    margin: 0;
 }
 

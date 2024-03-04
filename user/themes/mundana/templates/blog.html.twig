@@ -54,4 +54,7 @@
 {% endblock %}
 
 
-
+{% block bottom %}
+    <script type="text/javascript" src="https://webapi.amap.com/maps?v=2.0&key=您申请的key值"></script>
+    {{ parent() }}
+{% endblock %}
