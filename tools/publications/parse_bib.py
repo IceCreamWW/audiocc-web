@@ -15,6 +15,7 @@ class Citation:
     pages_: str = ""
     publisher_: str = ""
     entry_type_: str = ""
+    tags: list = None
 
     @property
     def frontmatter(self):
@@ -29,17 +30,16 @@ class Citation:
             "publisher": self.publisher,
             "uid": self.uid,
             "entry_type": self.entry_type,
+            "tags": self.tags
         }
         return "---\n" + yaml.dump(fields) + "---"
 
     @property
     def uid(self):
-        hash_ = ""
-        for c in self.title:
-            if c.lower() in "abcdefghijklmnopqrstuvwxyz":
-                hash_ += c.lower()
-        return hash_
-    
+        allowed_chars = "-'`~!@#$%^&+="
+        sanitized_title = "".join(c if c.isalnum() or c in allowed_chars else "#" for c in self.title)
+        return sanitized_title[:250]
+
     @property
     def author(self):
         return self.author_
@@ -133,10 +133,40 @@ def parse_bibstring(bibtex_string):
         citation.pages = entry.get('pages', '')
         citation.publisher = entry.get('publisher', '')
         citation.entry_type = entry.get('ENTRYTYPE', '')
+        citation.tags = guess_tags(citation.title)
 
         citations.append(citation)
     return citations
 
+def guess_tags(title):
+    title = title.lower()
+    words = title.split()
+    tags = []
+    def is_asr():
+        if "asr" in words or "speech recognition" in title:
+            return True
+        return False
+
+    def is_sv():
+        if "speaker verification" in title or "speaker identification" in title:
+            return True
+        return False
+
+    def is_frontend():
+        if any(word in ["se", "enhancement", "separation"] for word in words):
+            return True
+        return False
+
+    if is_asr():
+        tags.append("ASR")
+
+    if is_sv():
+        tags.append("SV")
+
+    if is_frontend():
+        tags.append("frontend")
+
+    return tags
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
