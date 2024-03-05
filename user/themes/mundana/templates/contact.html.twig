@@ -5,7 +5,7 @@
     <div class="container mt-5">
         <h3 class="font-weight-bold spanborder"><span>{{ page_title|raw }}</span></h3>
         <div class="row">
-            <div class="col-sm-7 col-12" id="map-container" tabindex="0"></div>
+            <div class="col-sm-8 col-12" id="map-container" tabindex="0" data-icon="{{ url('theme://images/poi-marker-red.png', true)  }}"></div>
             {% if page.header.address is not empty %}
                 <!-- Left column with icon list -->
                 <div class="col-md-4 rounded bg-light">
