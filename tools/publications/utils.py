@@ -1,8 +1,6 @@
 import bibtexparser
-import argparse
 import yaml
 from dataclasses import dataclass
-from pathlib import Path
 
 @dataclass
 class Citation:
@@ -15,7 +13,6 @@ class Citation:
     pages_: str = ""
     publisher_: str = ""
     entry_type_: str = ""
-    tags: list = None
 
     @property
     def frontmatter(self):
@@ -30,7 +27,6 @@ class Citation:
             "publisher": self.publisher,
             "uid": self.uid,
             "entry_type": self.entry_type,
-            "tags": self.tags
         }
         return "---\n" + yaml.dump(fields) + "---"
 
@@ -133,54 +129,7 @@ def parse_bibstring(bibtex_string):
         citation.pages = entry.get('pages', '')
         citation.publisher = entry.get('publisher', '')
         citation.entry_type = entry.get('ENTRYTYPE', '')
-        citation.tags = guess_tags(citation.title)
 
         citations.append(citation)
     return citations
-
-def guess_tags(title):
-    title = title.lower()
-    words = title.split()
-    tags = []
-    def is_asr():
-        if "asr" in words or "speech recognition" in title:
-            return True
-        return False
-
-    def is_sv():
-        if "speaker verification" in title or "speaker identification" in title:
-            return True
-        return False
-
-    def is_frontend():
-        if any(word in ["se", "enhancement", "separation"] for word in words):
-            return True
-        return False
-
-    if is_asr():
-        tags.append("ASR")
-
-    if is_sv():
-        tags.append("SV")
-
-    if is_frontend():
-        tags.append("frontend")
-
-    return tags
-
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--bibfile", "-i", type=Path, help="Path to the BibTeX file", default="/Users/weiwang/Downloads/yanmin.bib")
-    parser.add_argument("--output", "-o", type=Path, help="Path to output yamls", default="./workspace")
-    args = parser.parse_args()
-    bibstring = args.bibfile.read_text()
-    citations = parse_bibstring(bibstring)
-    for citation in citations:
-        if citation.year <= 2021:
-            continue
-        year = citation.year
-        uid = citation.uid
-        output = args.output / f"{year}" / f"{uid}"/ "default.md"
-        output.parent.mkdir(parents=True, exist_ok=True)
-        output.write_text(citation.frontmatter)
 
