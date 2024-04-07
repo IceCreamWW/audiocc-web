@@ -3,6 +3,7 @@ production-mode: true
 twig:
   process_shortcodes: true
 
+menu_search: false
 menu_langswitcher: true
 menu_login: false
 blog_route: '/news'

@@ -89,13 +89,20 @@
     display: inline-block;
 }
 
-#publications .pubitem {
+#publications .pub-item {
     margin-bottom: 1rem;
     font-family: "kelson_sansregular";
     margin-top: .5rem;
     border-bottom: 1px dotted #bbbbbb;
     overflow: hidden;
     padding-bottom: 1rem;
+}
+
+#publications .pub-item .link-item {
+    color: white;
+    cursor: pointer;
+    background-color: rgba(12, 77, 163, .80);
+    display: inline-block;
 }
 
 #publications-indexer {
@@ -166,6 +173,10 @@
 
 .profile-text {
     letter-spacing: .05rem;
+}
+
+.card-body li {
+    list-style: None;
 }
 
 

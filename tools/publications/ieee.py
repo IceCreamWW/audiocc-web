@@ -68,7 +68,7 @@ def collect(workspace: Path):
         for article_number in article_numbers:
             bibstring = get_bibstring_by_article_number(article_number)
             citation = parse_bibstring(bibstring)[0]
-            this_workspace = workspace / str(citation.year) / citation.uid
+            this_workspace = workspace / str(citation.year) / citation.directory
             done_flag_path = this_workspace / '.ieee'
             if done_flag_path.exists():
                 continue

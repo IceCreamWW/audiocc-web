@@ -31,7 +31,7 @@ def collect(workspace: Path):
 
             bibstring = soup.find('pre').get_text()
             citation = parse_bibstring(bibstring)[0]
-            this_workspace = workspace / str(citation.year) / citation.uid
+            this_workspace = workspace / str(citation.year) / citation.directory
             done_flag_path = this_workspace / '.interspeech'
             if done_flag_path.exists():
                 continue
@@ -40,9 +40,11 @@ def collect(workspace: Path):
             this_workspace.mkdir(exist_ok=True, parents=True)
             pdf_path = this_workspace / 'paper.pdf'
             pdf_link = soup.find(class_="fa-file-pdf-o").parent['href']
+
             pdf_content = requests.get(f"{url_prefix}/{pdf_link}").content
             with open(pdf_path, 'wb') as f:
                 f.write(pdf_content)
+
             (this_workspace / "default.md").write_text(citation.frontmatter)
             done_flag_path.touch()
 

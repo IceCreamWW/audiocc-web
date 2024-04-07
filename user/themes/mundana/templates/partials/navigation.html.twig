@@ -62,8 +62,6 @@
 {% endif %}
 </ul>
 
-{# Langswitcher (If langswitcher plugin is installed) #}
 {% if config.plugins.langswitcher.enabled and menu_lang and system.languages.supported is not null %}
     {% include 'partials/langswitcher.html.twig' %}
 {% endif %}
-

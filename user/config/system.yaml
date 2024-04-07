@@ -16,7 +16,7 @@ http_x_forwarded:
   ip: true
 languages:
   supported:
-    - zh-hans
+    - zh
     - en
   default_lang: null
   include_default_lang: true

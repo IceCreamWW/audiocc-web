@@ -5,10 +5,10 @@
     <div class="container mt-5">
         <h3 class="font-weight-bold spanborder"><span>{{ page_title|raw }}</span></h3>
         <div class="row">
-            <div class="col-sm-8 col-12" id="map-container" tabindex="0" data-icon="{{ url('theme://images/poi-marker-red.png', true)  }}"></div>
+            <div class="col-sm-9 col-12" id="map-container" tabindex="0" data-icon="{{ url('theme://images/poi-marker-red.png', true)  }}"></div>
             {% if page.header.address is not empty %}
                 <!-- Left column with icon list -->
-                <div class="col-md-4 rounded bg-light">
+                <div class="col-md-3 rounded bg-light">
                     <div class="card h-100">
                         {% if featuredImage and show_image %}
                             {{ featuredImage.loading('eager')
@@ -17,22 +17,22 @@
                             .attribute('height', '504')
                             .derivatives(320,672,320)
                             .sizes('(max-width: 768px) 100vw, 50vw')
-                            .html(page_title|raw, page_title|raw,'h-auto w-100 card-img-top')|raw }}
+                            .html(page_title|raw, page_title|raw,'h-auto w-100 p-4 card-img-top')|raw }}
                         {% endif %}
                         <div class="card-body">
-                            <h4 class="card-title px-4">{{ 'CONTACT.ADDRESS'|t }}</h4>
-                            <ul class="list-group rounded">
+                            <h4 class="card-title">{{ 'CONTACT.ADDRESS'|t }}</h4>
+                            <div class="pl-1">
                                 {% for item in page.header.address %}
+                                    <div class="my-3">
                                     {% if item.addressField ?? null %}
-                                        <li class="list-group-item border-0">
-                                            {% if item.fieldIcon ?? null %}
-                                                <span><i class="{{ item.fieldIcon }}"></i></span>
-                                            {% endif %}
-                                            <span class="ps-2">{{ item.addressField|raw }}</span>
-                                        </li>
+                                        {% if item.fieldIcon ?? null %}
+                                            <span><i class="{{ item.fieldIcon }}"></i></span>
+                                        {% endif %}
+                                        <span class="ps-2">{{ item.addressField|raw }}</span>
                                     {% endif %}
+                                    </div>
                                 {% endfor %}
-                            </ul>
+                            </div>
                         </div>
                     </div>
                 </div>

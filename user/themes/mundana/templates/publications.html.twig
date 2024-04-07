@@ -67,18 +67,26 @@
                 <div>
                     {% for paper in year.children|sort('header.journal', 'desc') %}
                     {% if entry2category[paper.header.entry_type] in selected_categories  %}
-                    <div class="pubitem">
-                        <div class="formatted-citation", data-bibstring="@{{ paper.header.entry_type}}{{ '{'~ paper.header.uid}},
-                            title = {{ '{' ~ paper.header.title ~ '}' }},
-                            author = {{ '{' ~ paper.header.author ~ '}' }},
-                            year = {{ '{' ~ paper.header.year ~ '}' }},
-                            {% if paper.header.month %} month = {{ '{' ~ paper.header.month ~ '}' }}, {% endif %}
-                            {% if paper.header.volume %} volume = {{ '{' ~ paper.header.volume ~ '}' }}, {% endif %}
-                            {% if paper.header.pages %} pages = {{ '{' ~ paper.header.pages ~ '}' }}, {% endif %}
-                            {% if paper.header.journal %} journal = {{ '{' ~ paper.header.journal ~ '}' }}, {% endif %}
-                            {% if paper.header.booktitle %} booktitle = {{ '{' ~ paper.header.booktitle ~ '}' }}, {% endif %}
-                            {% if paper.header.publisher %} publisher = {{ '{' ~ paper.header.publisher ~ '}' }}, {% endif %}
-                        }"></div>
+                    <div class="pub-item", data-bibstring="@{{ paper.header.entry_type}}{{ '{'~ paper.header.id}},
+    title = {{ '{' ~ paper.header.title ~ '}' }},
+    author = {{ '{' ~ paper.header.author ~ '}' }},
+    year = {{ '{' ~ paper.header.year ~ '}' }},
+{% if paper.header.month %}{{ '    month = {' ~ paper.header.month ~ '},\n' }}{% endif %}
+{% if paper.header.volume %}{{ '    volume = {' ~ paper.header.volume ~ '},\n' }}{% endif %}
+{% if paper.header.pages %}{{ '    pages = {' ~ paper.header.pages ~ '},\n' }}{% endif %}
+{% if paper.header.journal %}{{ '    journal = {' ~ paper.header.journal ~ '},\n' }}{% endif %}
+{% if paper.header.booktitle %}{{ '    booktitle = {' ~ paper.header.booktitle ~ '},\n' }}{% endif %}
+{% if paper.header.publisher %}{{ '    publisher = {' ~ paper.header.publisher ~ '},\n' }}{% endif %}
+}">
+                        <div class="formatted-citation"></div>
+                        <div class="pt-2">
+                            Links:&nbsp;
+                            <div class="link-item link-item-bibtex px-2 py-1">bibtex</div>
+                            <!-- iterate over key and value in page.header.links -->
+                            {% for key, value in paper.header.links %}
+                                <a href="{{ paper.media[value].url }}" class="link-item px-2 py-1 mx-2">{{ key }}</a> 
+                            {% endfor %}
+                        </div>
                     </div>
                     {% endif %}
                     {% endfor %}

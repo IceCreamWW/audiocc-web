@@ -3,6 +3,11 @@ from pathlib import Path
 import yaml
 from dataclasses import dataclass
 
+def get_directory(title):
+        allowed_chars = "-'`~!@#$%^&+="
+        sanitized_title = "".join(c if c.isalnum() or c in allowed_chars else "@" for c in title)
+        return sanitized_title[:250]
+
 @dataclass
 class Citation:
     author_: str = ""
@@ -14,9 +19,10 @@ class Citation:
     pages_: str = ""
     publisher_: str = ""
     entry_type_: str = ""
+    id_: str = ""
 
     @property
-    def frontmatter(self):
+    def fields(self):
         fields = {
             "author": self.author,
             "year": self.year,
@@ -25,22 +31,37 @@ class Citation:
             "number": self.number,
             "pages": self.pages,
             "publisher": self.publisher,
-            "uid": self.uid,
             "entry_type": self.entry_type,
+            "id": self.id,
         }
         if self.journal:
             fields["journal"] = self.journal
         if self.booktitle:
             fields["booktitle"] = self.booktitle
+        return fields
 
+    @property
+    def bibtex(self):
+        return f"@{self.entry_type}{{{self.id},\n" + ",\n".join([f"    {k} = {{{v}}}" for k, v in self.fields.items() if v]) + "\n}"
+
+    @property
+    def frontmatter(self):
+        fields = self.fields
         fields["links"] = {"paper": "paper.pdf"}
         return "---\n" + yaml.dump(fields) + "---"
 
     @property
-    def uid(self):
-        allowed_chars = "-'`~!@#$%^&+="
-        sanitized_title = "".join(c if c.isalnum() or c in allowed_chars else "#" for c in self.title)
-        return sanitized_title[:250]
+    def directory(self):
+        return get_directory(self.title)
+
+    @property
+    def id(self):
+        return self.id_
+
+    @id.setter
+    def id(self, value):
+        self.id_ = value
+
 
     @property
     def author(self):
@@ -144,6 +165,7 @@ def parse_bibstring(bibtex_string):
         citation.entry_type = entry.get('ENTRYTYPE', '')
         citation.booktitle = entry.get('booktitle', '')
         citation.journal = entry.get('journal', '')
+        citation.id = entry.get('ID', '')
 
         citations.append(citation)
     return citations
