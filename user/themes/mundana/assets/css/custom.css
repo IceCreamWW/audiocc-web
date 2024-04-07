@@ -1,4 +1,17 @@
 /* Custom CSS */
+.dropdown-menu {
+    background-color: rgba(12, 77, 163, .80);
+}
+.dropdown-item {
+    color: rgba(255, 255, 255, .55);
+}
+.dropdown-item.active, .dropdown-item:hover  {
+    background-color: inherit;
+    color: white;
+}
+.dropdown-toggle::after {
+    display: none;
+}
 
 @media (min-width: 1400px) {
     .container, .container-md, .container-sm, .container-lg, .container-xl, .container-xxl {
@@ -139,7 +152,7 @@
 .profile {
     border-radius: 5px;
     box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
+    /* cursor: pointer; */
     transition: box-shadow 0.3s;
 }
 

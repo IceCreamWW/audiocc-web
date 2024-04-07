@@ -23,7 +23,7 @@
                     {% set current_child = (child.active or child.activeChild) ? 'active' : '' %}
                     <li><a class="dropdown-item {{ current_child }}" href="{{ child.url }}">{{ child.menu }}</a></li>
                     {% endfor %}
-                </url>
+                </ul>
             </div>
         {% else %}
         <li class="nav-item">

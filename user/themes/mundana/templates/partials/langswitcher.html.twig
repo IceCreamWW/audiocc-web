@@ -1,17 +1,25 @@
 {% extends 'partials/langswitcher-logic.html.twig' %}
 
 {% block language_block_start %}
-<ul class="navbar-nav mx-auto d-flex align-items-center">
+<div class="nav-item navbar-nav dropdown {{ current_page }}">
+    <div class="nav-link dropdown-toggle" href="#" id="langswitcherDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="fa fa-globe" aria-hidden="true"></i>
+        {{ 'SITE.LANGUAGE'|t  }}
+    </div>
+    <ul class="dropdown-menu" aria-labelledby="langswitcherDropdown">
 {% endblock %}
 
 {% block language_block_end %}
 </ul>
+</div>
 {% endblock %}
 
 {% block language_item %}
     {% if show_language %}
-        <a href="{{ lang_url ~ uri.params ~ (uri.query|length > 1 ? '?' ~ uri.query) }}" class="nav-link external {{ active_class }}">
-            {% include 'partials/langswitcher-' ~ display_format ~ '.html.twig' %}
-        </a>
+        <li>
+            <a href="{{ lang_url ~ uri.params ~ (uri.query|length > 1 ? '?' ~ uri.query) }}" class="dropdown-item {{ active_class }}">
+                {% include 'partials/langswitcher-' ~ display_format ~ '.html.twig' %}
+            </a>
+        </li>
     {% endif %}
 {% endblock %}

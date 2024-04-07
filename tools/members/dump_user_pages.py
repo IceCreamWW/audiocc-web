@@ -107,7 +107,7 @@ for user in users:
     user_dir.mkdir(parents=True, exist_ok=True)
     with open(user_dir / "member.en.md", "w") as f:
         f.write(user.page("en"))
-    with open(user_dir / "member.zh-hans.md", "w") as f:
+    with open(user_dir / "member.zh.md", "w") as f:
         f.write(user.page("zh"))
 
     shutil.copy(user.avatar, user_dir / "avatar.png")

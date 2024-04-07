@@ -43,13 +43,6 @@
 {% import 'macros/macros.html.twig' as filters %}
 {% set titleFiltered = filters.generateFilteredTitle(uri) %}
 
-{% block banner %}
-<div class="banner d-none">
-    <img src="{{ page.media.images[page.header.banner_image].url }}">
-    <div class="banner-overlay"></div>
-</div>
-{% endblock %}
-
 {% block content %}
 
 <div class="row mt-3">

@@ -1,5 +1,6 @@
 SITE:
   TITLE: "AudioCC Lab"
+  LANGUAGE: "Language"
 PUBLICATIONS:
   ALL: "All"
   PUBLICATION_YEAR: "Year"

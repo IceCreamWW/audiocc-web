@@ -175,7 +175,7 @@ def fetch_article(url, workspace, overwrite=False):
             category=category
         )
 
-        with open(article_folder / "item.zh-hans.md", "w") as f:
+        with open(article_folder / "item.zh.md", "w") as f:
             f.write(article.page)
             
         with open(article_folder / "item.en.md", "w") as f:
@@ -197,8 +197,8 @@ def fetch_article(url, workspace, overwrite=False):
     return article, (prev_url, next_url)
 
 if __name__ == '__main__':
-    format = "%(asctime)s: %(message)s"
-    logging.basicConfig(format=format, level=logging.INFO, datefmt="%H:%M:%S")
+    format_ = "%(asctime)s: %(message)s"
+    logging.basicConfig(format=format_, level=logging.INFO, datefmt="%H:%M:%S")
 
     parser = argparse.ArgumentParser(description='Get article content from URL')
     parser.add_argument('--url', type=str, help='URL of the article')

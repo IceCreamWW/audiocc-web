@@ -18,7 +18,7 @@
     {% for tag in memberTags %}  {# Loop through each tag #}
         {% set membersInTag = allMembers|filter(member => member.header.degree|lower == tag) %}  {# Filter members by tag #}
         {% if membersInTag|length > 0 %}
-            <h2 class="font-weight-bold title h2 mb-4 ml-4 spanborder">
+            <h2 class="font-weight-bold title h2 mb-4 ml-4 spanborder pb-2">
                 {{ page.header.member_tag_to_display[tag] }} 
             </h2>
             <div class="members-list d-lg-flex flex-wrap">
