@@ -3,9 +3,8 @@ date: 01/03/2024 14:12
 taxonomy:
   category:
   - fields
-thumbnail: thumbnail.jpg
+thumbnail: thumbnail.png
 title: 语音识别
-url: https://mp.weixin.qq.com/s?__biz=MzkyNjYyOTk2OA==&mid=2247483671&idx=1&sn=913849b5ef5b590f5f1d4ab8d79b43cd&chksm=c2352828f542a13eb77c40cdc1276fa2975c752cdd5351128b255b679df17f851b109bef9924&cur_album_id=3354438011224211464&scene=189#wechat_redirect
 ---
 
 语音识别技术（Automatic Speech Recognition, ASR）已成为人工智能领域的一项核心技术，它允许计算机通过识别和理解人类的语音来执行命令或者转换为文本。近年来，借助于深度学习和人工智能技术的飞速发展，语音识别技术已经取得了显著的进展，特别是在准确性、速度和适用性方面。现代语音识别系统不仅能够以接近人类的准确率识别语音，而且能够处理各种语言、方言、口音以及噪声背景下的语音。
