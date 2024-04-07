@@ -2,12 +2,12 @@
 
 $(document).ready(function() {
     function adjustBannerHeight() {
-        // if match media lg
+        if (!window.matchMedia("(min-width: 1280px)").matches) return;
+
         var ref = $('.banner-ref');
         if (ref.length === 0) {
             ref = $('#MagicMenu');
         }
-
         var banner = $('.banner');
 
         if (ref.length && banner.length) {
@@ -23,5 +23,14 @@ $(document).ready(function() {
         // Adjust the height on window resize
         $(window).resize(adjustBannerHeight);
     }
+
+    function adjustMainTop() {
+        if (window.matchMedia("(min-width: 1280px)").matches) return;
+        var navHeight = $('#MagicMenu').outerHeight() + 10;
+        $('main').css('margin-top', navHeight);
+    }
+    adjustMainTop();
+    $(window).resize(adjustBannerHeight);
+
 });
 
