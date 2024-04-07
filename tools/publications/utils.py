@@ -1,4 +1,5 @@
 import bibtexparser
+from pathlib import Path
 import yaml
 from dataclasses import dataclass
 
@@ -133,3 +134,12 @@ def parse_bibstring(bibtex_string):
         citations.append(citation)
     return citations
 
+def read_frontmatter(md_file: Path):
+    text = md_file.read_text()
+    text = text.strip().split("---")[1]
+    frontmatter = yaml.safe_load(text)
+    return frontmatter
+
+def write_frontmatter(md_file: Path, frontmatter: dict):
+    text = "---\n" + yaml.dump(frontmatter) + "---\n"
+    md_file.write_text(text)

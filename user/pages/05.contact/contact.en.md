@@ -88,13 +88,10 @@ media_order: pic07.webp
 subtitleLead: '1'
 address:
     -
-        addressField: 'Mundana Grav Street, 5'
+        addressField: 'Shanghai Jiao Tong University, Minhang Campus, SEIEE Department, 3-502'
         fieldIcon: 'fas fa-map-marker-alt'
     -
-        addressField: 'Phone number: +34111222333'
-        fieldIcon: 'fas fa-phone'
-    -
-        addressField: 'E-mail: demo@pmdesign.dev'
+        addressField: 'E-mail: audiocc@sjtu.edu.cn'
         fieldIcon: 'fas fa-envelope'
 icon_menu: 'fas fa-map-marker-alt'
 ---

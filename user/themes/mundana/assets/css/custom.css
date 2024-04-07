@@ -4,10 +4,9 @@
     .container, .container-md, .container-sm, .container-lg, .container-xl, .container-xxl {
         max-width: 1140px;
     }
-}
-
-#sidebar {
-    padding-left: 2.5rem;
+    #sidebar {
+        padding-left: 2.5rem;
+    }
 }
 
 
@@ -79,6 +78,10 @@
     }
 }
 
+#publications {
+    background-color: rgba(249, 249, 249, 0.3);
+    box-sizing: border-box;
+}
 
 #publications .pubyear {
     border-left: .3rem solid rgba(12, 77, 163, 0.75);
@@ -90,7 +93,41 @@
     margin-bottom: 1rem;
     font-family: "kelson_sansregular";
     margin-top: .5rem;
+    border-bottom: 1px dotted #bbbbbb;
+    overflow: hidden;
+    padding-bottom: 1rem;
 }
+
+#publications-indexer {
+    background-color: rgba(12, 77, 163, .80);;
+    max-height: 90vh;
+    overflow-y: scroll;
+}
+
+#publications-indexer ul {
+    list-style-type: none;
+}
+
+#publications-indexer li {
+    padding: 0.3rem 0;
+}
+
+#publications-indexer .category {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.9);
+    padding-bottom: 0.3rem;
+    margin-bottom: 0.5rem;
+}
+
+#publications-indexer a {
+    color: rgba(255, 255, 255, .9);
+}
+
+#publications-indexer li.active a {
+    color: #EBB73A;
+}
+
 
 .profile {
     border-radius: 5px;
