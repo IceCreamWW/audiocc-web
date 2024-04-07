@@ -19,6 +19,10 @@ def collect(workspace: Path):
 
         soup = BeautifulSoup(response.text, "lxml")
         links = [link['href'] for link in soup.find_all('a') if 'Yanmin Qian' in link.get_text()]
+        num_records = len(list(workspace.glob(f"{year}/*/.interspeech")))
+        if len(links) == num_records:
+            logging.info(f"{year}: no new records found ({num_records} records), done.")
+            continue
 
         logging.info(f"found {len(links)} papers for year {year}")
         for link in tqdm(links):

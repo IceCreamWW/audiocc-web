@@ -21,7 +21,6 @@ class Citation:
             "author": self.author,
             "year": self.year,
             "title": self.title,
-            "journal": self.journal,
             "volume": self.volume,
             "number": self.number,
             "pages": self.pages,
@@ -29,6 +28,12 @@ class Citation:
             "uid": self.uid,
             "entry_type": self.entry_type,
         }
+        if self.journal:
+            fields["journal"] = self.journal
+        if self.booktitle:
+            fields["booktitle"] = self.booktitle
+
+        fields["links"] = {"paper": "paper.pdf"}
         return "---\n" + yaml.dump(fields) + "---"
 
     @property
@@ -73,6 +78,14 @@ class Citation:
     @journal.setter
     def journal(self, value):
         self.journal_ = value
+
+    @property
+    def booktitle(self):
+        return self.booktitle_
+
+    @booktitle.setter
+    def booktitle(self, value):
+        self.booktitle_ = value
 
     @property
     def volume(self):
@@ -124,12 +137,13 @@ def parse_bibstring(bibtex_string):
         citation.author = entry.get('author', '')
         citation.year = int(entry.get('year', -1))
         citation.title = entry.get('title', '')
-        citation.journal = entry.get('journal', '')
         citation.volume = entry.get('volume', '')
         citation.number = entry.get('number', '')
         citation.pages = entry.get('pages', '')
         citation.publisher = entry.get('publisher', '')
         citation.entry_type = entry.get('ENTRYTYPE', '')
+        citation.booktitle = entry.get('booktitle', '')
+        citation.journal = entry.get('journal', '')
 
         citations.append(citation)
     return citations
