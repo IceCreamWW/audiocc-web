@@ -1,11 +1,27 @@
 SITE:
   TITLE: "听觉认知与计算声学实验室"
-  LANGUAGE: "语言"
+  LANGUAGE: "Language"
+  VIEW_ALL_POSTS: "查看全部"
+MEMBERS:
+  JOIN_DATE: "加入时间"
+  RESEARCH_FIELDS: "研究方向"
 PUBLICATIONS:
   ALL: "全部"
   PUBLICATION_YEAR: "发表时间"
   RESEARCH_CATEGORY: "文章类别"
-  JOURNAL: "期刊论文"
-  CONFERENCE: "会议论文"
+  JOURNAL: "期刊"
+  CONFERENCE: "会议"
 CONTACT:
   ADDRESS: "联系方式"
+FOOTER:
+  POSTCODE_KEY: 邮政编码
+  POSTCODE_VALUE: 200240
+  ADDRESS_KEY: 通讯/办公地址
+  ADDRESS_VALUE: 上海交通大学闵行校区电院3-502
+  EMAIL_KEY: 电子邮箱
+  EMAIL_VALUE: audiocc.lab@sjtu.edu.cn
+MUNDANA:
+  SIDEBAR:
+    CATEGORIES: 文章分类
+    FEATURED: 置顶
+

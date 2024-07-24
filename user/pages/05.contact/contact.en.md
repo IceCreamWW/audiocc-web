@@ -11,7 +11,7 @@ address:
         addressField: 'Shanghai Jiao Tong University, Minhang Campus, SEIEE Department, 3-502'
         fieldIcon: 'fas fa-map-marker-alt'
     -
-        addressField: 'audiocc@sjtu.edu.cn'
+        addressField: 'audiocc.lab@sjtu.edu.cn'
         fieldIcon: 'fas fa-envelope'
 ---
 

@@ -11,7 +11,7 @@ address:
         addressField: '上海交通大学闵行校区, 电院3-502'
         fieldIcon: 'fas fa-map-marker-alt'
     -
-        addressField: 'audiocc@sjtu.edu.cn'
+        addressField: 'audiocc.lab@sjtu.edu.cn'
         fieldIcon: 'fas fa-envelope'
 ---
 

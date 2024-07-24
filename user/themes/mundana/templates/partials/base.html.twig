@@ -123,17 +123,6 @@
 	{% endblock %}
 
 	<body class="{% block body_classes %}{{ body_classes }}{% endblock %}">
-        {% block banner %}
-        <div class="banner d-none">
-            {% if page.header.banner_image %}
-                <img src="{{ page.media.images[page.header.banner_image].url }}">
-            {% else %}
-                <img src='{{ url("theme://images/banner.jpeg") }}'>
-            {% endif %}
-            <div class="banner-overlay"></div>
-        </div>
-        {% endblock %}
-
 		{% block navbar %}
 			<!-- Navbar -->
 			{% include 'partials/navbar.html.twig' %}

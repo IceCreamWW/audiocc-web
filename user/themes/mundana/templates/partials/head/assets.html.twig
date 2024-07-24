@@ -8,6 +8,7 @@
     {# Font Awesome Icons #}
     {% do assets.addCss('theme://assets/css/all.css', {rel: 'stylesheet'}) %}
     {# do assets.addCSS('https://use.fontawesome.com/releases/v5.15.4/css/all.css', {rel: 'stylesheet'}) #} 
+    {% do assets.addCss('theme://assets/css/swiper-bundle.min.css', {rel: 'stylesheet'}) %}
 
     {% set styles %}
         a.text-dark:hover {
@@ -22,6 +23,7 @@
     {% do assets.addJs('theme://assets/js/theme.js', {group:'bottom'}) %}     
     {# Bootstrap 5.3.2 #}
     {% do assets.addJs('theme://assets/js/popper.min.js', {group:'bottom'}) %}     
+    {% do assets.addJs('theme://assets/js/swiper-bundle.min.js', {group:'bottom'}) %}     
     {% do assets.addJs('theme://assets/js/bootstrap.bundle.min.js', {group:'bottom'}) %}     
 
     {# do assets.addJs('https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js', {group:'bottom', integrity:'sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN', crossorigin: 'anonymous'}) #}

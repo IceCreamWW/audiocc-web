@@ -25,6 +25,18 @@ SUMMARY_MIN_LENGTH = 50
 
 OPENAI_BASE_URL = "http://118.195.211.214:30012/v1/"
 
+def translate(text, language):
+    translations = {
+        "research": {
+            "en": "research",
+            "zh": "科学研究",
+            },
+        "general": {
+            "en": "general",
+            "zh": "日常生活",
+            }
+    }
+    return translations[text][language]
 
 @dataclass
 class Article:
@@ -38,13 +50,12 @@ class Article:
     def uid(self):
         return self.url.split("/")[-1]
 
-    @property
-    def page(self):
+    def page(self, language="en"):
         fields = {
             "title": self.title,
             "date": self.publish_date,
             "thumbnail": "thumbnail.jpg",
-            "taxonomy": { "category": [self.category] },
+            "taxonomy": { "category": translate(self.category, language) },
             "url": self.url,
         }
         content = "---\n" + yaml.dump(fields, default_flow_style=False, allow_unicode=True) + "---\n" + self.summary
@@ -149,7 +160,7 @@ def fetch_article(url, workspace, overwrite=False):
         # Example: Extract the title of the page
         logging.info(f"the article title is: {title}")
 
-        if title.startswith("【论文速递】"):
+        if title.startswith("【论文"):
             category = "research"
         else:
             category = "general"
@@ -176,10 +187,10 @@ def fetch_article(url, workspace, overwrite=False):
         )
 
         with open(article_folder / "item.zh.md", "w") as f:
-            f.write(article.page)
+            f.write(article.page("zh"))
             
         with open(article_folder / "item.en.md", "w") as f:
-            f.write(article.page)
+            f.write(article.page("en"))
 
     next_url = prev_url = None
     num_page_nav_btns = len(WebDriverWait(driver, EC_WAIT_TIMEOUT).until(EC.presence_of_all_elements_located((By.CLASS_NAME, "album_read_nav_btn"))))

@@ -1,6 +1,6 @@
 {# PARTIAL PAGE SUMMARY #}
 
-<div class="excerpt mb-3 text-body">
+<div class="excerpt text-body overflow-auto position-relative">
     {% if page.summary != page.content %}
         {{ page.summary|truncate(header.summary.size)|striptags|raw }}
     {% else %}

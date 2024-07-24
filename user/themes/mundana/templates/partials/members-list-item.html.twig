@@ -1,20 +1,22 @@
 {# <div class="mb-3 d-lg-flex g-0 flex-wrap col-12 col-sm-3 px-4 py-3" onclick="window.location='{{ page.url }}';"> #}
 <div class="mb-3 d-lg-flex g-0 flex-wrap col-12 col-sm-3 px-4 py-3">
-    <div class="profile px-2 py-4 w-100">
-	{# Show featured image if it's defined and show_image is true #}
-        {% if featuredImage and show_image %}
-            <div class="profile-pic m-auto w-75">
-                {{ featuredImage.loading(loadLazy ? 'lazy' : 'eager')
-                .attribute('decoding','async')
-                .html(page_title|raw, page_title|raw)|raw }}
-            </div>
-        {% endif %}
+    <a href="{{ page.header.url ? page.header.url : page.url }}" aria-label="{{ page_title|raw }}">
+        <div class="profile px-2 py-4 w-100">
+        {# Show featured image if it's defined and show_image is true #}
+            {% if featuredImage and show_image %}
+                    <div class="profile-pic m-auto w-75">
+                        {{ featuredImage.loading(loadLazy ? 'lazy' : 'eager')
+                        .attribute('decoding','async')
+                        .html(page_title|raw, page_title|raw)|raw }}
+                    </div>
+            {% endif %}
 
-        <div class="pt-4 m-auto profile-text">
-            {# Page post title #}
-            <{{title_level}} class="font-weight-bold text-center h4">
-            <span class="text-dark">{{ page_title|raw }}</span>
-            </{{title_level}}>
+            <div class="pt-4 m-auto profile-text">
+                {# Page post title #}
+                <{{title_level}} class="font-weight-bold text-center h4">
+                <span class="text-dark">{{ page_title|raw }}</span>
+                </{{title_level}}>
+            </div>
         </div>
-    </div>
+    </a>
 </div>

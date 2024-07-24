@@ -16,3 +16,9 @@ custom_js: true
 default_page_style: primary
 
 sidebar_showtaxonomy: false
+custom_logo_enabled: true
+custom_logo: ['sjtu_logo.png']
+custom_logo_width: 280
+
+
+  

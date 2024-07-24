@@ -1,6 +1,6 @@
 ---
 title: Introduction
-media_order: "team.jpeg,race.jpeg,dinner.jpeg"
+media_order: "dinner.jpeg,team.jpeg,race.jpeg"
 ---
 
 

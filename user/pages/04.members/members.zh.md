@@ -8,6 +8,7 @@ member_tag_to_display:
     master: "硕士研究生"
     vistor: "访问人员"
     undergraduate: "本科生"
+    alumnus: "毕业生"
 content:
     items: '@self.children'
 ---

@@ -1,25 +1,38 @@
-<div class="mb-5 row d-lg-flex justify-content-between">
+<div class="row d-lg-flex justify-content-between py-3">
 	<div class="col-12 order-2 order-md-1 mt-4 mt-sm-0 col-sm-7">
 		{# Page post title #}
-		<{{title_level}} class="font-weight-bold mb-1">
-		<a class="text-dark" href="{{ page.header.url ? page.header.url : page.url }}">{{ page_title|raw }}</a>
-		</{{title_level}}>
-		{# If summary is enabled it will displayed #}
-		{% if page.header.summary.enabled ?? true %}
-			{% include 'partials/blog/page-summary.html.twig' %}
-		{% endif %}
-		{# Show categories #}
-		<small class="d-block text-muted">
-			{{ 'MUNDANA.MISC.IN'|t }} <span class="catlist">
-			{% for category in page.taxonomy.category %}
-				<a class="text-capitalize text-{{ color_style }} smoothscroll" href="{{ blog.url }}/category{{ config.system.param_sep }}{{ category }}">{{ category|raw }}</a>{% if not loop.last %}<span class="sep">, </span>{% endif %}
-			{% endfor %}
-			</span>
-		</small>
-		{# Show post date #}
-		<small class="d-block text-muted">
-			{% include 'partials/blog/date.html.twig' %}
-		</small>
+        <div class="row-post">
+            <{{title_level}} class="font-weight-bold mb-1">
+            <a class="text-dark" href="{{ page.header.url ? page.header.url : page.url }}">{{ page_title|raw }}</a>
+            </{{title_level}}>
+        </div>
+
+        <div class="row-post">
+            {# If summary is enabled it will displayed #}
+            {% if page.header.summary.enabled ?? true %}
+                {% include 'partials/blog/page-summary.html.twig' %}
+            {% endif %}
+        </div>
+
+        <div class="row-post position-relative">
+            <div class="position-absolute bottom-0">
+                {# Show post date #}
+                <span class="text-muted">
+                    {% include 'partials/blog/date.html.twig' %}
+                </span>
+                {# Show categories #}
+                <small class="text-muted">
+                {{ 'MUNDANA.MISC.IN'|t }} 
+                <span class="catlist">
+                {% for category in page.taxonomy.category %}
+                    <a class="text-capitalize text-{{ color_style }} smoothscroll" href="{{ blog.url }}/category{{ config.system.param_sep }}{{ category }}">
+                        {{ category }}
+                    </a>{% if not loop.last %}<span class="sep">, </span>{% endif %}
+                {% endfor %}
+                </span>
+                </small>
+            </div>
+        </div>
 	</div>
 	{# Show featured image if it's defined and show_image is true #}
 	{% if featuredImage and show_image %}
@@ -27,11 +40,11 @@
 		<a href="{{ page.header.url ? page.header.url : page.url }}" aria-label="{{ page_title|raw }}">
 			{{ featuredImage.loading(loadLazy ? 'lazy' : 'eager')
 			.attribute('decoding','async')
-			.attribute('width', '424')
-            .attribute('height', '318')
-			.derivatives(320,424,320)
+			.attribute('width', '320')
+            .attribute('height', '180')
+			.derivatives(200,320,160)
 			.sizes('(max-width: 768px) 100vw, 50vw')
-			.html(page_title|raw, page_title|raw,'w-100 h-auto rounded')|raw }}
+			.html(page_title|raw, page_title|raw,'rounded')|raw }}
 		</a>
 	</div>
 	{% endif %}

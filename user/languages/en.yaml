@@ -1,6 +1,10 @@
 SITE:
   TITLE: "AudioCC Lab"
   LANGUAGE: "Language"
+  VIEW_ALL_POSTS: "view all posts"
+MEMBERS:
+  JOIN_DATE: "Join Date"
+  RESEARCH_FIELDS: "Research Fields"
 PUBLICATIONS:
   ALL: "All"
   PUBLICATION_YEAR: "Year"
@@ -9,3 +13,11 @@ PUBLICATIONS:
   CONFERENCE: "Conference Papers"
 CONTACT:
   ADDRESS: "Address"
+FOOTER:
+  POSTCODE_KEY: Postcode
+  POSTCODE_VALUE: 200240
+  ADDRESS_KEY: Office Address
+  ADDRESS_VALUE: Shanghai Jiao Tong University, Minhang Campus, SEIEE Building 3-502
+  EMAIL_KEY: Email
+  EMAIL_VALUE: audiocc.lab@sjtu.edu.cn
+

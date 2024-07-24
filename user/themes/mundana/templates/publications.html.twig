@@ -52,7 +52,7 @@
         <span>{{ page.header.title }}</span>
         </h2>
 
-        <div id="publications" class="p-4" style="background-image: url({{ url('theme://images/absurdity.png', true)}}) ">
+        <div id="publications" class="p-4" style="background-image: url({{ url('theme://images/absurdity.png')}}) ">
         {% for year in selected_years %}
             {% if year2page[year] %}
                 {% set year = year2page[year] %}
@@ -96,11 +96,11 @@
             <div>
                 <ul>
                     <li class="{{ years_query == 'all' ? 'active' : 'inactive' }} pub-select-all">
-                        <a href="{{ page.url }}?years=all&categories={{ categories_query }}">{{ 'PUBLICATIONS.ALL'|t }}</a>
+                        <a href="{{ page.url }}?years=all&categories={{ categories_query }}">{{ 'PUBLICATIONS.ALL'|t }} ({{ page.header.year2pubs['all']['journal'] }} {{ 'PUBLICATIONS.JOURNAL'|t }}; {{ page.header.year2pubs['all']['conference'] }} {{ 'PUBLICATIONS.CONFERENCE'|t }})</a>
                     </li>
                     {% for year in year2page|keys %}
                         <li class="{{ years_query == 'all' or year in selected_years ? 'active' : 'inactive'  }}">
-                            <a href="{{ page.url }}?years={{ year }}&categories={{ categories_query }}">{{ year }}</a>
+                            <a href="{{ page.url }}?years={{ year }}&categories={{ categories_query }}">{{ year }} ({{ page.header.year2pubs[year]['journal'] }} {{ 'PUBLICATIONS.JOURNAL'|t }}; {{ page.header.year2pubs[year]['conference'] }} {{ 'PUBLICATIONS.CONFERENCE'|t }}) </a>
                         </li>
                     {% endfor %}
                 </ul>

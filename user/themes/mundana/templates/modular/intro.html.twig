@@ -7,34 +7,32 @@
 {% set page_title = page.title %}
 {% set show_title = page.header.show_title|defined(false) %}
 
-<div id="intro" class="mx-auto col-lg-12 p-lg-0 mb-2 mt-lg-0 mt-5 bg-lightblue position-relative">
-    <div class="pe-0 h-100 tofront">
-        <div class="row justify-content-between">
-            <div id="carouselIntroIndicators" class="carousel slide col-lg-6 pe-lg-2 pb-5 pt-4 banner-ref" data-ride="carousel">
-              <div class="carousel-indicators">
-                {% for image in page.media.images %}
-                    <button type="button" data-bs-target="#carouselIntroIndicators" data-bs-slide-to="{{ loop.index0 }}" class="{{ loop.first ? 'active' }}" aria-current="{{ loop.first ? 'true' }}" aria-label="Slide {{ loop.index0 }}"></button>
-                {% endfor %}
-              </div>
-              <div class="carousel-inner">
-                  {% for image in page.media.images %}
-                  <div class="carousel-item {{ loop.first ? 'active' }}">
-                      <img src="{{ image.url}}" class="d-block w-100" alt="{{ image.name }}">
-                  </div>
-                  {% endfor %}
-              </div>
-            </div>
+<div class="row col-lg-12 p-lg-0 mb-2 mt-4 bg-lightblue position-relative">
+    <div class="swiper-container main-slider loading">
+      <div class="swiper-wrapper">
+          {% for image in page.media.images %}
+          <div class="swiper-slide">
+            <figure class="slide-bgimg" style="background-image:url({{image.url}})">
+              <img src="{{ image.url}}" class="entity-img" alt="{{ image.name }}">
+              </figure>
+          </div>
+          {% endfor %}
+      </div>
+      <!-- If we need navigation buttons -->
+      <div class="swiper-button-prev swiper-button-white"></div>
+      <div class="swiper-button-next swiper-button-white"></div>
+    </div>
 
-            <div class="col-lg-6 align-self-center mt-5 mt-lg-0 p-lg-0 ps-lg-4">
-                <div id="homeIntro" class="px-lg-4 pt-lg-4 mb-lg-4">
-                    <h3 class="font-weight-bold spanborder mb-3">
-                        <span>{{ page.title|raw }}</span>
-                    </h3>
-                    <div class="mb-3">
-                        {{ page.content|raw }}
-                    </div>
-                </div>
-            </div>
-        </div>
+    <!-- Thumbnail navigation -->
+    <div class="swiper-container nav-slider loading">
+      <div class="swiper-wrapper" role="navigation">
+          {% for image in page.media.images %}
+          <div class="swiper-slide">
+            <figure class="slide-bgimg" style="background-image:url({{image.url}})">
+              <img src="{{ image.url}}" class="entity-img" alt="{{ image.name }}">
+              </figure>
+          </div>
+          {% endfor %}
+      </div>
     </div>
 </div>

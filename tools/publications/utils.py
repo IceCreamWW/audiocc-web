@@ -4,9 +4,9 @@ import yaml
 from dataclasses import dataclass
 
 def get_directory(title):
-        allowed_chars = "-'`~!@#$%^&+="
-        sanitized_title = "".join(c if c.isalnum() or c in allowed_chars else "@" for c in title)
-        return sanitized_title[:250]
+    allowed_chars = "-'`~!@#$%^&+="
+    sanitized_title = "".join(c if c.isalnum() or c in allowed_chars else "@" for c in title)
+    return sanitized_title[:250]
 
 @dataclass
 class Citation:

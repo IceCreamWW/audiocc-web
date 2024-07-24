@@ -24,6 +24,10 @@
 				{{ widthLogo ? 'width: ' ~ ( widthLogo * 0.60) ~ 'px;' : '' }} 
 			}
 		}	
+		@media (min-width: 768px) {
+            .wrap-site-title {
+                border-left: 2px solid white;
+            }
 	</style>
 {% endblock %}
 
@@ -34,16 +38,23 @@
 {# Set searchbox in navbar #}
 {% set menu_search = theme_var('menu_search')|defined(true) %}
 
+{% if page.header.banner_image %}
+    {% set banner_image = page.media.images[page.header.banner_image].url %}
+{% else %}
+    {% set banner_image = url('theme://images/banner.jpeg') %}
+{% endif %}
+
 {# Navigation bar #}
-<nav id="MagicMenu" class="topnav navbar navbar-expand-lg navbar-{{navbarStyle}} {{ navbarBgcolor }} navbarCustomStyles"  >
-	<div class="{{navbarContainer}} px-lg-0 flex-wrap">
-		<a id="navbarBrand" class="navbar-brand col-lg-12" href="{{ base_url == '' ? '/' : base_url }}">
+<nav id="MagicMenu" class="topnav navbar navbar-expand-lg navbar-{{navbarStyle}} {{ navbarBgcolor }} navbarCustomStyles" style="background-image: url('{{ banner_image }}'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+	<div class="{{navbarContainer}} px-lg-0 flex-wrap flex-row-reverse z-index-1">
+		<a id="navbarBrand" class="navbar-brand col-lg-12 row" href="{{ base_url == '' ? '/' : base_url }}">
 			{# Show logo if enabled in theme options #}
 			{% if logo_enabled and logo %}
-				{% set logo_file = (logo|first).name %}
-				<div class="mr-3">
+				{% set logo_file = (logo|first) %}
+				<div class="mr-3 col-lg-3">
 					<img class="align-self-center w_logo" src="{{ url('theme://images/logo/' ~ logo_file) }}" alt="{{ SITE.TITLE|raw }}"/>
 				</div>
+            {% else %}
 			{% endif %}
 
 			{% if navbarSiteName or navbarIcon %}
@@ -56,7 +67,9 @@
 
 				{# Show site name if enabled in theme options #}
 				{% if navbarSiteName %}
-                    <span class="text-white h2-lg h4 ps-lg-2 nav-title" href="#">{{ 'SITE.TITLE'|t }}</span>
+                    <div class="col-lg-6 wrap-site-title ms-lg-3">
+                        <span class="text-white h2-lg h4 ps-lg-2 nav-title" href="#"> {{ 'SITE.TITLE'|t }}</span>
+                    </div>
 				{% endif %}
 			{% endif %}
 		</a>
