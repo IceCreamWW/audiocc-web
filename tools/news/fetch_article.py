@@ -25,18 +25,32 @@ SUMMARY_MIN_LENGTH = 50
 
 OPENAI_BASE_URL = "http://118.195.211.214:30012/v1/"
 
-def translate(text, language):
+def translate(text_zh, language):
     translations = {
-        "research": {
-            "en": "research",
-            "zh": "科学研究",
-            },
-        "general": {
-            "en": "general",
-            "zh": "日常生活",
-            }
+        "实验室团建": {
+            "en": "Team Building",
+        },
+        "近期新闻": {
+            "en": "Recent News",
+        },
+        "科研成果": {
+            "en": "Research",
+        },
+        "实验室招聘": {
+            "en": "Recruitment",
+        },
+        "实验室介绍": {
+            "en": "About Us",
+        },
+        "其他": {
+            "en": "Others",
+        },
     }
-    return translations[text][language]
+
+    if language == "zh":
+        return text_zh
+
+    return translations[text_zh][language]
 
 @dataclass
 class Article:
@@ -160,10 +174,12 @@ def fetch_article(url, workspace, overwrite=False):
         # Example: Extract the title of the page
         logging.info(f"the article title is: {title}")
 
-        if title.startswith("【论文"):
-            category = "research"
+        categories = WebDriverWait(driver, EC_WAIT_TIMEOUT).until(EC.presence_of_element_located((By.CSS_SELECTOR, ".article-tag__list"))).text
+        categories = [category for category in categories.split("\n")[::2] if category != "全部文章"]
+        if len(categories) == 0:
+            category = "其他"
         else:
-            category = "general"
+            category = categories[0]
 
         publish_time = WebDriverWait(driver, EC_WAIT_TIMEOUT).until(EC.presence_of_element_located((By.ID, "publish_time"))).text
 
@@ -173,7 +189,7 @@ def fetch_article(url, workspace, overwrite=False):
         logging.info("summairzing")
         img_urls = get_thumbnail_images(imgs)
         assert len(img_urls) > 0, "No valid thumbnail image found"
-        img_url = img_urls[1] if category == "research" and len(img_urls) > 1  else img_urls[0]
+        img_url = img_urls[1] if category == "科研成果" and len(img_urls) > 1  else img_urls[0]
         wget.download(img_url, (article_folder / "thumbnail.jpg").as_posix())
 
         summary = get_summary(driver)
@@ -181,7 +197,7 @@ def fetch_article(url, workspace, overwrite=False):
         article = Article(
             url=url,
             title=title,
-            publish_date=datetime.strptime(publish_time, "%Y-%m-%d  %H:%M").strftime("%m/%d/%Y %H:%M"),
+            publish_date=datetime.strptime(publish_time, "%Y年%m月%d日 %H:%M").strftime("%m/%d/%Y %H:%M"),
             summary=summary,
             category=category
         )

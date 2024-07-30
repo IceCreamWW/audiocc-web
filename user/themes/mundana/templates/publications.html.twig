@@ -58,7 +58,7 @@
                 {% set year = year2page[year] %}
                 <div class="pubyear h3">{{ year.folder }}</div>
                 <div>
-                    {% for paper in year.children|sort('header.journal', 'desc') %}
+                    {% for paper in year.children|order('header.journal', 'desc') %}
                     {% if entry2category[paper.header.entry_type] in selected_categories  %}
                     <div class="pub-item", data-bibstring="@{{ paper.header.entry_type}}{{ '{'~ paper.header.id}},
     title = {{ '{' ~ paper.header.title ~ '}' }},

@@ -43,13 +43,10 @@
             </div>
 
             <div class="col-md-5 pe-0 align-self-center">
-                {% if  page.header.join_date != "unknown" %}
+                {% if  page.header.degree != "faculty" %}
                     <p class='fs-5'>{{ 'MEMBERS.JOIN_DATE'|t }}: {{ page.header.join_date }}</p>
-                {% endif %}
-                {% if  page.header.fields != "unknown" %}
                     <p class='fs-5'>{{ 'MEMBERS.RESEARCH_FIELDS'|t }}: {{ page.header.fields }}</p>
                 {% endif %}
-
             </div>
 
             {# Show featured image if it's defined and show_image is true #}
@@ -62,39 +59,68 @@
                 .html(page_title, page_title,'rounded')|raw }}
             </div>
             {% endif %}
+
         </div>
     </div>
-</div>
-<!-- Blog Item Content -->
-<div class="{{ sidebarClasses }} px-0">
-	<div class="row justify-content-center">
-        {# Show share buttons if they are defined #}
-        {% if share %}
-            {% include 'partials/blog/share.html.twig' %}
-        {% endif %}
-		<div class="{{ shareClasses }}">
-            <!-- Article -->
-			<article class="article-post">                
-			    {{ page.content|raw }}                
-			</article>
-            <!-- Tags -->
-            <div class="mb-4">
-                <span class="taglist">
-                {% for tag in page.taxonomy.tag %}
-                    <a class="sscroll btn btn-outline-{{ color_style }} btn-sm font-weight-bold" href="{{ blog.url|rtrim('/') }}/tag{{ config.system.param_sep }}{{ tag }}">{{ tag|raw }}</a>
-                {% endfor %}
-                </span>
+    <!-- Blog Item Content -->
+    <div class="{{ sidebarClasses }} px-0">
+        <div class="row justify-content-center">
+            {# Show share buttons if they are defined #}
+            {% if share %}
+                {% include 'partials/blog/share.html.twig' %}
+            {% endif %}
+            <div class="{{ shareClasses }}">
+                <!-- Article -->
+                <article class="article-post">                
+                    {{ page.content|raw }}                
+                </article>
+                <!-- Tags -->
+                <div class="mb-4">
+                    <span class="taglist">
+                    {% for tag in page.taxonomy.tag %}
+                        <a class="sscroll btn btn-outline-{{ color_style }} btn-sm font-weight-bold" href="{{ blog.url|rtrim('/') }}/tag{{ config.system.param_sep }}{{ tag }}">{{ tag|raw }}</a>
+                    {% endfor %}
+                    </span>
+                </div>
+                {% if mailchimp is same as(true) %}
+                    {% include 'partials/blog/mailchimp.html.twig' %}
+                {% endif %}
+                {% if author %}				
+                    {% include 'partials/blog/author.html.twig' %}
+                {% endif %}
+                {% if disqus is same as(true) and disqus_name is not empty %}
+                    {% include 'partials/blog/disqus.html.twig' with { 'short_name': disqus_name } %}
+                {% endif %}
             </div>
-            {% if mailchimp is same as(true) %}
-                {% include 'partials/blog/mailchimp.html.twig' %}
+
+            {% if  page.header.degree != "faculty" %}
+                <h1> Publications </h1>
+                <div id="publications" class="p-4" style="background-image: url({{ url('theme://images/absurdity.png')}}) ">
+                {% for paper in page.find(page.route ~ '/publications').children.order('header.year', 'desc') %}
+                    <div class="pub-item", data-bibstring="@{{ paper.header.entry_type}}{{ '{'~ paper.header.id}},
+            title = {{ '{' ~ paper.header.title ~ '}' }},
+        author = {{ '{' ~ paper.header.author ~ '}' }},
+        year = {{ '{' ~ paper.header.year ~ '}' }},
+    {% if paper.header.month %}{{ '    month = {' ~ paper.header.month ~ '},\n' }}{% endif %}
+    {% if paper.header.volume %}{{ '    volume = {' ~ paper.header.volume ~ '},\n' }}{% endif %}
+    {% if paper.header.pages %}{{ '    pages = {' ~ paper.header.pages ~ '},\n' }}{% endif %}
+    {% if paper.header.journal %}{{ '    journal = {' ~ paper.header.journal ~ '},\n' }}{% endif %}
+    {% if paper.header.booktitle %}{{ '    booktitle = {' ~ paper.header.booktitle ~ '},\n' }}{% endif %}
+    {% if paper.header.publisher %}{{ '    publisher = {' ~ paper.header.publisher ~ '},\n' }}{% endif %}
+    }">
+                    <div class="formatted-citation"></div>
+                    <div class="pt-2">
+                        Links:&nbsp;
+                        <div class="link-item link-item-bibtex px-2 py-1">bibtex</div>
+                        <!-- iterate over key and value in page.header.links -->
+                        {% for key, value in paper.header.links %}
+                            <a href="{{ paper.media[value].url }}" class="link-item px-2 py-1 mx-2">{{ key }}</a> 
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
             {% endif %}
-            {% if author %}				
-                {% include 'partials/blog/author.html.twig' %}
-            {% endif %}
-            {% if disqus is same as(true) and disqus_name is not empty %}
-                {% include 'partials/blog/disqus.html.twig' with { 'short_name': disqus_name } %}
-            {% endif %}
-		</div>
 	</div>
 </div>
 
@@ -108,3 +134,7 @@
     {% include 'partials/blog/footer_pagination.html.twig' %}
 {% endif %}
 
+{% block bottom %}
+    {% do assets.addJs('theme://assets/js/citation.js', {group: 'bottom'}) %}
+    {% do assets.addJs('theme://assets/js/publications.js', {group: 'bottom'}) %}
+{% endblock %}
