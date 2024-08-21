@@ -12,7 +12,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from fetch_article import fetch_article
 
 CHROME_DRIVER_PATH = "./chromedriver"
-EC_WAIT_TIMEOUT = 30
+EC_WAIT_TIMEOUT = 60
 
 
 def fetch_all_articles_in_album(url, workspace, force_update=False):

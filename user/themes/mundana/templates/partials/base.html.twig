@@ -102,6 +102,7 @@
 {% set feeds = config.plugins.feed.enabled and theme_var('sidebar_showfeeds')|defined(true) %}
 {% set show_featured = header_var('show_featured')|defined(true) %}
 {% set show_categories = header_var('show_categories')|defined(true) %}
+{% set show_notifications = header_var('show_notifications')|defined(true) %}
 
 {# Set blog settings #}
 {% set themeBlog = theme_var('blog_route')|defined('/blog') %}

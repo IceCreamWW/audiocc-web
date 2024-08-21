@@ -7,8 +7,10 @@
 {% set show_sidebar = header_var('show_sidebar', [page, blog])|defined(true)  %}
 {% set featuredposts_number = theme_var('featuredposts_number')|defined(5) %}
 {% set featuredposts_tag = theme_var('featuredposts_tag')|defined('featured') %}
-{% set show_featured = header_var('show_featured')|defined(true) %}
+{% set show_featured = header_var('show_featured')|defined(false) %}
 {% set show_categories = header_var('show_categories')|defined(true) %}
+{% set show_notifications = header_var('show_notifications')|defined(true) %}
+{% set notifications_tag = header_var('notifications_tag')|defined('notification')  %}
 {% set override_style = theme_var('override_page_style')|defined(false) %}
 {% set color_style = override_style ? theme_var('default_page_style')|default('primary') : page.parent.header.style|defined('primary') %}
 {% set page_title = page.title %}

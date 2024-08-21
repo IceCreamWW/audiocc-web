@@ -31,6 +31,14 @@ title: Postdoc
 4. Assist in guiding graduate students;
 5. Actively participate in joint research projects with domestic and international teams.
 
+# Application Requirements
+1. Candidates should hold a Ph.D. degree in a field related to the research direction, with a passion for research and a spirit of exploration and innovation.
+2. Must have published high-level papers as the first author in the fields of speech, language, and auditory intelligence within the last 3 years.
+3. Should have a good character, be honest, positive, and modest; possess strong teamwork skills, a high sense of responsibility, and demonstrate good academic ethics and a rigorous scientific attitude.
+4. Must be under 35 years old, in good physical and mental health, and able to fully commit to the job requirements. Exceptional candidates may have some flexibility regarding age.
+5. Should have strong reading and writing skills in both Chinese and English that match their academic qualifications.
+
+
 # Working Conditions and Benefits
 
 1. The annual salary is not less than 300,000 RMB (pre-tax). The specific amount will be determined through negotiation with the supervisor and the candidate. Additionally, performance-based bonuses will be provided based on research achievements, ensuring competitive compensation for outstanding postdocs;

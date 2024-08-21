@@ -2,6 +2,8 @@ SITE:
   TITLE: "AudioCC Lab"
   LANGUAGE: "Language"
   VIEW_ALL_POSTS: "view all posts"
+SIDEBAR:
+  NOTIFICATION: "Notifications"
 MEMBERS:
   JOIN_DATE: "Join Date"
   RESEARCH_FIELDS: "Research Fields"

@@ -3,9 +3,7 @@ avatar: avatar.png
 degree: PhD
 email: hanbing97@sjtu.edu.cn
 enroll_date: '2020-09-01'
-fields:
-- SID
-- TTS
+fields: SID
 join_date: '2020-09-01'
 name: 韩冰
 role: student

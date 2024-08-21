@@ -2,6 +2,8 @@ SITE:
   TITLE: "听觉认知与计算声学实验室"
   LANGUAGE: "Language"
   VIEW_ALL_POSTS: "查看全部"
+SIDEBAR:
+  NOTIFICATION: "通知"
 MEMBERS:
   JOIN_DATE: "加入时间"
   RESEARCH_FIELDS: "研究方向"
